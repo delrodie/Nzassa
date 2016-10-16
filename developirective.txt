@@ -1,0 +1,15 @@
+/*
+*********************************************
+*** Platefrome de gestion du reseau Nzassa ***
+***   Entreprises: ONG MESAD & EDEN'ART    ***
+***       Auteur: Delrodie AMOIKON         ***
+**********************************************
+*/
+
+1-/
+
+
+2-/ Gestion des utilisateurs
+    Pour l'enregistrement des utilisateurs, nous allons crées automatiquement les mots de passe
+    pour que l'administrateur ne le saisissent pas.
+    garder uniquement dans le formulaire nom utilisateur, email, locked et groupe.

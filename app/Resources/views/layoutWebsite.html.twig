@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <!-- Bloc Media -->
+        {% block media %}{% endblock %}
+        <!-- \Bloc Media -->
+        {% block stylesheets %}
+          <link rel="stylesheet" type="text/css" href="{{ asset('vendor/foundation/css/foundation.css')}}">
+          <link rel="stylesheet" type="text/css" href="{{ asset('vendor/font-awesome-4.5.0/css/font-awesome.min.css')}}">
+          <link rel="stylesheet" type="text/css" href="{{ asset('css/nzassa.css')}}">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.png') }}" />
+    </head>
+    <body>
+
+        <section id="nzassa-section-menu" data-sticky-container>
+          <div data-sticky data-options="marginTop:0;" style="width:100%">
+            <div class="row menu-information">
+
+
+                  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <div class="small-4 medium-4 large-7 columns text-right">
+                      <a href="#">
+                        <i class="fa fa-info-circle fa-lg"></i> Comment ça marche ?
+                      </a>
+                    </div>
+                    <div class="small-4 medium-2 large-1 columns text-center">
+                      <a href="#">
+                        <i class="fa fa-support fa-lg"></i> Support
+                      </a>
+                    </div>
+                    <div class="small-4 medium-6 large-4 columns">
+                      <a href="connexion.php">
+                        <i class="fa fa-user fa-lg"></i>
+                        Bonjour {{ app.user.username }}
+                        -
+                        <a href="{{ asset('fos_user_security_logout') }}">Déconnexion</a>
+                      </a>
+                    </div>
+                  {% else %}
+                  <div class="small-4 medium-8 large-9 columns text-right">
+                    <a href="#">
+                      <i class="fa fa-info-circle fa-lg"></i> Comment ça marche ?
+                    </a>
+                  </div>
+                  <div class="small-4 medium-2 large-1 columns text-center">
+                    <a href="#">
+                      <i class="fa fa-support fa-lg"></i> Support
+                    </a>
+                  </div>
+                  <div class="small-4 medium-2 large-2 columns">
+                    <a href="connexion.php">
+                      <i class="fa fa-user fa-lg"></i>
+                        <a href="{{ asset('fos_user_security_login') }}">Connexion</a>
+                    </a>
+                  </div>
+                  {% endif %}
+
+            </div>
+            <!-- Menu pour ecran large -->
+            <div class="row menu-ecran-large show-for-large">
+              <div class="filigramme">
+                <div class="large-10 large-centered columns">
+                <div class="row">
+                  <div class="large-3 columns">
+                    <img src="{{ asset('images/logonzassa.png')}} " alt="Reseau Nzassa">
+                  </div>
+                  <div class="large-9 columns">
+                    <ul class="dropdown menu expanded text-center" data-dropdown-menu>
+                      <li><a href="index.php" class="menu-titre large">Accueil</a></li>
+                      <li>
+                        <a href="#" class="menu-titre large">Nzassa</a>
+                        <ul class="menu text-left">
+                          <li><a href="nzassa.php" class="menu-titre">Qui sommes-nous?</a></li>
+                          <li><a href="marche.php" class="menu-titre">Marché</a></li>
+                          <li><a href="financement.php" class="menu-titre">financement</a></li>
+                          <li><a href="soutien.php" class="menu-titre">Soutien</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#" class="menu-titre large">Adhérer</a></li>
+                      <li><a href="#" class="menu-titre large">Evenements</a></li>
+                      <li><a href="#" class="menu-titre large">Contact</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              </div>
+
+            </div>
+            <!-- \Menu pour ecran large -->
+            <!-- Menu pour petit ecran -->
+            <div class="row menu-ecran-petit hide-for-large">
+              <div class="title-bar" data-responsive-toggle="nzassa-menu" data-hide-for="large">
+                <button class="menu-icon" type="button" data-toggle></button>
+                <div class="title-bar-title">Menu</div>
+                <img src="ressources/images/logonzassa.png" alt="Reseau Nzassa" width="150px" class="logo">
+              </div>
+              <div class="filigramme" id="nzassa-menu">
+                <ul class="dropdown menu expanded" data-dropdown-menu>
+                  <li><a href="#" class="menu-titre petit">Accueil</a></li>
+                  <li>
+                    <a href="#" class="menu-titre petit">Nzassa</a>
+                    <ul class="menu">
+                      <li><a href="nzassa.php" class="menu-titre">Qui sommes-nous?</a></li>
+                      <li><a href="marche.php" class="menu-titre">Marché</a></li>
+                      <li><a href="financement.php" class="menu-titre">financement</a></li>
+                      <li><a href="soutien.php" class="menu-titre">Soutien</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#" class="menu-titre petit">Adherer</a></li>
+                  <li><a href="#" class="menu-titre petit">Evenements</a></li>
+                  <li><a href="#" class="menu-titre petit">Contact</a></li>
+                </ul>
+              </div>
+            </div>
+            <!-- \Menu pour petit ecran -->
+          </div>
+        </section>
+        <!-- \Header -->
+        <section id="nzassa-section-page-contenu">
+
+        {% block content %}{% endblock %}
+
+        </section>
+        <!-- Footer -->
+        <section id="nzassa-section-statistique">
+          <div class="row">
+            <div class="large-8 large-centered columns">
+              <div class="row small-up-3 nzassa-statistique">
+                <div class="columns">
+                  <div class="nzassa-statistique-chiffre">
+                    2.500
+                  </div>
+                  <div class="nzassa-statistique-libelle">
+                    membres
+                  </div>
+                </div>
+                <div class="columns">
+                  <div class="nzassa-statistique-chiffre">
+                    2.500
+                  </div>
+                  <div class="nzassa-statistique-libelle">
+                    clients
+                  </div>
+                </div>
+                <div class="columns">
+                  <div class="nzassa-statistique-chiffre">
+                    2.500
+                  </div>
+                  <div class="nzassa-statistique-libelle">
+                    projets réalisés
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="nzassa-section-plan-site">
+          <div class="row nzassa-plan">
+            <div class="large-8 large-centered columns">
+              <div class="row small-up-2 medium-up-2 large-up-4 plan">
+                <div class="columns">
+                  <h4>Réseau</h4>
+                  <div><a href="#">Adherer</a></div>
+                  <div><a href="#">Investir</a></div>
+                  <div><a href="#">Annuaire des membres</a></div>
+                  <div><a href="#">Communauté</a></div>
+                  <div><a href="#">Domaines d'interventions</a></div>
+                </div>
+                <div class="columns">
+                  <h4>Qui sommes-nous ?</h4>
+                  <div><a href="nzassa.php">Qui sommes-nous?</a></div>
+                  <div><a href="#">Investisseurs</a></div>
+                  <div><a href="#">Formateurs/Encadreurs</a></div>
+                  <div><a href="#">Comment ça marche ?</a></div>
+                </div>
+                <div class="columns">
+                  <h4>Nous contacter</h4>
+                  <div><a href="#">Obtenir de l'aide</a></div>
+                  <div><a href="#">Demande de partenariat</a></div>
+                  <div><a href="#">Faire de la publicité avec nous</a></div>
+                  <div><a href="#">Publier un travail</a></div>
+                  <div><a href="#">Contacter l'équipe</a></div>
+                </div>
+                <div class="columns">
+                  <h4>Nous suivre</h4>
+                  <div class="text-center">
+                    <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
+                    <a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>
+                    <a href="#"><i class="fa fa-google-plus-square fa-2x"></i></a>
+                    <a href="#"><i class="fa fa-instagram fa-2x"></i></a>
+                  </div>
+                  <div>
+                    <!-- Formulaire -->
+                    <div class="reveal small" id="NzassaEcrireForm" data-reveal>
+                      <form action="" method="post" accept-charset="utf-8">
+                        <h5>Votre message</h5>
+                        <div class="information">
+                          Tous les champs sont obligatoires
+                        </div>
+                        <div>
+                          <label for="nzassaNom">Nom
+                            <input type="text" name="nzassaNom" value="" placeholder="Nom et prénoms">
+                          </label>
+                        </div>
+                        <div>
+                          <label for="nzassaTel">Contact
+                            <input type="tel" name="nzassaTel" value="" placeholder="Contact telephonique">
+                          </label>
+                        </div>
+                        <div>
+                          <label for="nzassaMail">Email
+                            <input type="email" name="nzassaMail" value="" placeholder="Adresse mail">
+                          </label>
+                        </div>
+                        <div>
+                          <label for="nzassaMessage">Message
+                            <textarea name="nzassaMessage"></textarea>
+                          </label>
+                        </div>
+                        <div class="text-right">
+                          <input type="submit" name="nzassaEnvoie" value="ENVOYER" class="button btn-envoie">
+                        </div>
+                      </form>
+
+                      <button class="close-button" data-close aria-label="Close reveal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <!-- \Formulaire -->
+                    <button type="button" class="button btn-contact" data-open="NzassaEcrireForm">Nous ecrire</button>
+                  </div>
+                </div>
+              </div>
+              <div class="termes">
+                <hr>
+                <a href="#">Politique de confidentialité</a>
+                <a href="#">Termes et conditions</a>
+                <a href="#">Code de conduite</a>
+              </div>
+            </div>
+          </div>
+          <div class="row nzassa-copyright">
+            <div class="columns">
+              <div class="row">
+                <div class="large-8 large-centered columns">
+                  &copy; Copyright Reseau NZASSA, Septembre 2016 | Tous droits reservés
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- \Footer -->
+        {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('vendor/foundation/js/vendor/jquery.js')}} "></script>
+            <script type="text/javascript" src="{{ asset('vendor/foundation/js/vendor/foundation.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('vendor/foundation/js/vendor/what-input.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('vendor/foundation/js/app.js')}}"></script>
+        {% endblock %}
+    </body>
+</html>

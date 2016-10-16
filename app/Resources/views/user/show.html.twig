@@ -1,0 +1,164 @@
+{% extends 'layoutPlateforme.html.twig' %}
+
+{% block title %}Gestion des groupes d'utilisateurs{% endblock %}
+
+{% block scripts1 %}
+  <script type="text/javascript" src="{{ asset('js/jquery-1.11.3.min.js')}} "></script>
+  <script>
+       $(document).ready(function() {
+           $('#nzassaged').DataTable();
+       } );
+
+   </script>
+{% endblock %}
+
+{% block content %}
+    <section class="main-section">
+        <div class="container2">
+          <div class="nzassa-page nzassa-zone">
+            <div class="small-12">
+
+              <!-- Exploitation -->
+              <div class="row">
+              <!-- Liste des rayonnages -->
+                <div class="small-12 medium-8 large-7 columns nzassa-page--liste">
+                  <h1>Liste des groupes d'utilisateurs</h1>
+                  <div>
+                    <table id="nzassaged" class="table table-striped table-bordered table-nzassa" cellspacing="0" width="100%">
+                      <thead class="text-center">
+                        <tr align="center">
+                          <th>ID</th>
+                          <th>LOGIN</th>
+                          <th>EMAILS</th>
+                          <th>VERROU</th>
+                          <th>GROUPES</th>
+                          <th>ACTIONS</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for user in users %}
+                          <tr>
+                            <td class="text-right">{{ user.id }}</td>
+                            <td class="text-left">
+                                {{ user.username }}
+                            </td>
+                            <td class="text-left">
+                                {{ user.email }}
+                            </td>
+                            <td class="text-center">
+                              {% if user.locked %}
+                                <span style="color: red"><i class="fa fa-lock fa-lg"></i></span>
+                              {% else %}
+                                <i class="fa fa-unlock fa-lg"></i>
+                              {% endif %}
+                            </td>
+                            <td>{% if user.groups %}{{ user.groups|join(', ') }}{% endif %}</td>
+                            <td class="text-center nzassa-lien-tableau">
+                              <a href="{{ path('admin_users_show', { 'id': user.id }) }}"><span class="glyphicon glyphicon-user"></span></a> |
+                              <a href="{{ path('admin_users_show', { 'id': user.id }) }}"><span class="glyphicon glyphicon-zoom-in"></span></a>  |
+                              <a href="{{ path('admin_users_edit', { 'id': user.id }) }}"><span class="glyphicon glyphicon-edit"></span></a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- \Liste des rayonnages -->
+                <!-- Enregistrement -->
+                <div class="small-12 medium-4 large-4 large-offset-1 columns nzassa-page--enregistrement">
+                  <h1>Informations de {{ user.username|upper }}</h1>
+
+                  <div class="row">
+                    <div class="small-12 columns">
+                      <label>Nom utilisateur
+                        <input type="text" name="name" value="{{ user.username }}" readonly="">
+                      </label>
+                    </div>
+                    <div class="small-12 columns">
+                        <label for="">Adresse email
+                            <input type="text" name="name" value="{{ user.email }}" readonly="">
+                        </label>
+                    </div>
+                    <div class="small-12 columns">
+                        <label for="">
+                          {% if user.locked %}
+                            Ce compte est verouillé <span style="color: red"><i class="fa fa-lock fa-lg"></i></span>
+                          {% else %}
+                            Ce compte n'est pas verrouillé <i class="fa fa-unlock fa-lg"></i>
+                          {% endif %}
+                        </label>
+                    </div>
+                    <div class="small-12 columns">
+                        <label for="">
+                            {% if user.lastLogin %}
+                              Dernière connexion : {{ user.lastLogin|date('Y-m-d H:i:s') }}
+                            {% else %}
+                              Cet utilisateur ne s'est jamais connecté
+                            {% endif %}
+                        </label>
+                    </div>
+                    <div class="small-12 columns">
+                        <label for="">
+                          {% if user.groups %}
+                              Cet utilisateur est un {{ user.groups|join(', ') }}
+                          {% else %}
+                              Cet utilisateur n'appartient à aucun groupe
+                          {% endif %}
+                        </label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="small-5 columns text-left">
+                        <a href="{{ path('admin_users_index') }}">
+                            <button class="button warning"><i class="fa fa-pencil"></i> Ajouter</button>
+                        </a>
+                    </div>
+                    <div class="small-5 columns text-right">
+                      <a href="{{ path('admin_users_edit', { 'id': user.id }) }}">
+                          <button class="button warning"><span class="glyphicon glyphicon-edit"></span> Modifier</button>
+                      </a>
+                    </div>
+                  </div>
+
+
+                </div>
+                <!-- \Enregistrement -->
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </section>
+{% endblock %}
+
+{% block javascripts %}
+  <script type="text/javascript" src="{{ asset('vendor/foundation/plateforme/js/jquery.min.js')}} "></script>
+    <script type="text/javascript" src="{{ asset('vendor/foundation/plateforme/js/foundation.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/bootstrap/js/dataTables.bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js')}}"></script>
+    <script>
+      $(function(){ $(document).foundation(); });
+      $(document).ready(function(){
+        // disable default behavior for links - prevents iframe logging to
+        // browsing history, requiring multiple back-button clicks to go back one page
+        $('.iframe-body a[href=#]').click(function(e) {
+          e.preventDefault();
+        });
+      });
+    </script>
+
+    <script>
+	    $(document).ready(function(){$(document).foundation();
+		$(".off-canvas-submenu").hide();
+		$(".off-canvas-submenu-call").click(function() {
+			var icon = $(this).parent().next(".off-canvas-submenu").is(':visible') ? '+' : '-';
+			$(this).parent().next(".off-canvas-submenu").slideToggle('fast');
+			$(this).find("span").text(icon);
+		});
+		})
+	</script>
+{% endblock %}

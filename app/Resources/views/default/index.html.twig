@@ -1,0 +1,157 @@
+{% extends 'layoutPlateforme.html.twig' %}
+
+{% block title %}Bienvenue sur plateforme du Reseau Nzassa {% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/semantic/css/semantic.min.css')}} ">
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/foundation/plateforme/css/app.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/foundation/plateforme/css/normalize.css')}} ">
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/foundation/plateforme/css/foundation.css')}} ">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/slideshow2.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/font-awesome-4.5.0/css/font-awesome.min.css')}}" media="all">
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/plateforme.css')}} ">
+{% endblock %}
+
+{% block content %}
+<section class="main-section">
+    <div class="container2">
+      <div class="nzassa-page nzassa-accueil">
+        <div class="small-12">
+
+          <!-- Exploitation -->
+          <div class="row">
+          <!-- Liste des rayonnages -->
+            <div class="small-12 medium-10 large-10 medium-centered columns nzassa-page--accueil">
+
+              <div class="row">
+                                <div class="columns">
+                                    <div class="ui column grid">
+                                      <div class="column">
+                                        <div class="ui raised segment">
+                                            <a class="ui orange ribbon label">
+                                                Bienvenue
+                                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                                   {{ app.user.username|capitalize }}
+                                                {% endif %}
+                                                sur NZASSA
+                                            </a>
+                                            <p></p><br>
+
+                                            <div class="row">
+                                                <div class="columns medium-8 medium-centered text-bienvenue">
+                                                    <h2>
+                                                        Bienvenue
+                                                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                                           {{ app.user.username|capitalize }}
+                                                        {% endif %}
+                                                        sur la plateforme d'administration du Réseau Nzassa
+                                                    </h2>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="columns medium-6 text-center">
+                                                  {% if nombreBeneficiaires %}
+                                                    <div class="ui statistic">
+                                                        <div class="value"><i class="users icon"></i> {{ nombreBeneficiaires }}</div>
+                                                        <div class="label">Bénéficiaires</div>
+                                                    </div>
+                                                  {% endif %}
+                                                </div>
+                                                <div class="columns medium-6 text-center">
+                                                  {% if nombreDomaines %}
+                                                    <div class="ui statistic">
+                                                        <div class="value"><i class="student icon"></i> {{ nombreDomaines }}</div>
+                                                        <div class="label">Domaines</div>
+                                                    </div>
+                                                  {% endif %}
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="columns medium-8 medium-centered text-consigne">
+                                                  <h4>
+                                                  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                                        <i class="help circle icon"></i>
+                                                        Cliquer sur l'icone <i class="fa fa-bars"></i> se trouvant à l'extrème gauche, en haut pour afficher le menu
+                                                  {% else %}
+                                                        <div class="text-center">
+                                                          Veuillez vous <a href="{{ path('fos_user_security_login') }}">Connecter</a>
+                                                        </div>
+
+                                                  {% endif %}
+                                                    </h4>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+  </div>
+        <!-- \Liste des rayonnages -->
+      </div>
+
+    </div>
+  </div>
+</div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('vendor/foundation/plateforme/js/jquery.min.js')}} "></script>
+<script type="text/javascript" src="{{ asset('vendor/foundation/plateforme/js/foundation.js')}}"></script>
+<script type="text/javascript" src="{{ asset('vendor/semantic/js/semantic.min.js')}}"></script>
+//
+<script>
+$(function(){ $(document).foundation(); });
+$(document).ready(function(){
+// disable default behavior for links - prevents iframe logging to
+// browsing history, requiring multiple back-button clicks to go back one page
+$('.iframe-body a[href=#]').click(function(e) {
+e.preventDefault();
+});
+});
+</script>
+
+<script>
+$(document).ready(function(){$(document).foundation();
+$(".off-canvas-submenu").hide();
+$(".off-canvas-submenu-call").click(function() {
+var icon = $(this).parent().next(".off-canvas-submenu").is(':visible') ? '+' : '-';
+$(this).parent().next(".off-canvas-submenu").slideToggle('fast');
+$(this).find("span").text(icon);
+});
+})
+</script>
+<script>
+$('.menu .item')
+.tab()
+;
+</script>
+
+<script type='text/javascript'>//<![CDATA[
+$(window).load(function(){
+  function readURL(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('#blah').attr('src', e.target.result);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+
+  $("#nzassaPhotoUpload").change(function(){
+      readURL(this);
+  });
+});//]]>
+
+</script>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends 'layoutPlateforme.html.twig' %}
+
+{% block title %}Gestion des Domaines {% endblock %}
+
+{% block scripts1 %}
+  <script type="text/javascript" src="{{ asset('js/jquery-1.11.3.min.js')}} "></script>
+  <script>
+       $(document).ready(function() {
+           $('#nzassaged').DataTable();
+       } );
+
+   </script>
+{% endblock %}
+
+{% block content %}
+    <section class="main-section">
+        <div class="container2">
+          <div class="nzassa-page nzassa-domaine">
+            <div class="small-12">
+
+              <!-- Exploitation -->
+              <div class="row">
+              <!-- Liste des rayonnages -->
+                <div class="small-12 medium-8 large-7 columns nzassa-page--liste">
+                  <h1>Liste des domaines</h1>
+                  <div>
+                    <table id="nzassaged" class="table table-striped table-bordered table-nzassa" cellspacing="0" width="100%">
+                      <thead class="text-center">
+                        <tr align="center">
+                          <th>ID</th>
+                          <th>CODE</th>
+                          <th>LIBELLES</th>
+                          <th>DESACTIVATIONS</th>
+                          <th>ACTIONS</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for domaine in domaines %}
+                          <tr>
+                            <td class="text-right">{{ domaine.id }}</td>
+                            <td class="text-center">{{ domaine.code }}</td>
+                            <td class="text-left">{{ domaine.libelle }}</td>
+                            <td class="text-center">
+                              {% if domaine.desactivation %}
+                                  <input type="checkbox" checked="checked" readonly="readonly">
+                              {% else %}
+                                  <input type="checkbox" readonly="readonly">
+                              {% endif %}
+                            </td>
+                            <td class="text-center nzassa-lien-tableau">
+                              <!--<a href="{{ path('admin_domaines_show', { 'id': domaine.id }) }}"><span class="glyphicon glyphicon-zoom-in"></span></a> &nbsp; | &nbsp;
+                              --><a href="{{ path('admin_domaines_edit', { 'id': domaine.id }) }}"><span class="glyphicon glyphicon-edit"></span></a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- \Liste des rayonnages -->
+                <!-- Enregistrement -->
+                <div class="small-12 medium-4 large-4 large-offset-1 columns nzassa-page--enregistrement">
+                  <h1>Modification</h1>
+                  {{ form_start(edit_form) }}
+                  <div class="row">
+                    <div class="small-12 columns">
+                      <label>{{ form_label(edit_form.libelle, "Domaine d'activité") }}
+                        {{ form_errors(edit_form.libelle) }}
+                        {{ form_widget(edit_form.libelle) }}
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="small-12 columns">
+                      <label for="">{{ form_label(edit_form.desactivation, 'Désactivaction dudomaine') }}
+                        {{ form_errors(edit_form.desactivation) }}
+                        {{ form_widget(edit_form.desactivation) }}
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="small-12 columns text-right">
+                      <input type="submit" value="Modification" class="button warning">
+                    </div>
+                  </div>
+                  {{ form_end(edit_form) }}
+                </div>
+                <!-- \Enregistrement -->
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </section>
+{% endblock %}
+
+{% block javascripts %}
+  <script type="text/javascript" src="{{ asset('vendor/foundation/plateforme/js/jquery.min.js')}} "></script>
+    <script type="text/javascript" src="{{ asset('vendor/foundation/plateforme/js/foundation.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/bootstrap/js/dataTables.bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js')}}"></script>
+    <script>
+      $(function(){ $(document).foundation(); });
+      $(document).ready(function(){
+        // disable default behavior for links - prevents iframe logging to
+        // browsing history, requiring multiple back-button clicks to go back one page
+        $('.iframe-body a[href=#]').click(function(e) {
+          e.preventDefault();
+        });
+      });
+    </script>
+
+    <script>
+	    $(document).ready(function(){$(document).foundation();
+		$(".off-canvas-submenu").hide();
+		$(".off-canvas-submenu-call").click(function() {
+			var icon = $(this).parent().next(".off-canvas-submenu").is(':visible') ? '+' : '-';
+			$(this).parent().next(".off-canvas-submenu").slideToggle('fast');
+			$(this).find("span").text(icon);
+		});
+		})
+	</script>
+{% endblock %}

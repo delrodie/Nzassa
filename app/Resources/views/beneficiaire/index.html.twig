@@ -1,0 +1,118 @@
+{% extends 'layoutPlateforme.html.twig' %}
+
+{% block title %}Gestion des Beneficiaires {% endblock %}
+
+{% block scripts1 %}
+  <script type="text/javascript" src="{{ asset('js/jquery-1.11.3.min.js')}} "></script>
+  <script>
+       $(document).ready(function() {
+           $('#nzassaged').DataTable();
+       } );
+
+   </script>
+{% endblock %}
+
+{% block content %}
+<section class="main-section">
+    <div class="container2">
+      <div class="nzassa-page nzassa-utilisateur">
+        <div class="small-12">
+
+          <!-- Exploitation -->
+          <div class="row">
+          <!-- Liste des rayonnages -->
+            <div class="small-12 medium-12 large-12 medium-centered columns nzassa-page--liste">
+              <!--{% for flash_message in app.session.flashBag.get('Notification') %}
+              <div class="row">
+                <div class="columns">
+                  <div class="success callout" data-closable="slide-out-right">
+                    <i class="fa fa-exclamation-triangle fa-2x"></i>
+                    <span>{{ flash_message }}</span>
+                    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}-->
+              <h1>Liste des beneficiaires</h1>
+              <div>
+                <table id="nzassaged" class="table table-striped table-bordered table-nzassa" cellspacing="0" width="100%">
+                  <thead class="text-center">
+                    <tr align="center">
+                      <th>ID</th>
+                      <th>MATRICULES</th>
+                      <th>NOM & PRENOMS</th>
+                      <th>SEXES</th>
+                      <th>CONTACTS</th>
+                      <th>EMAILS</th>
+                      <th>DOMICILES</th>
+                      <th>DOMAINES</th>
+                      <th>ACTIONS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+            {% for beneficiaire in beneficiaires %}
+                <tr>
+                    <td class="text-right">{{ beneficiaire.id }}</td>
+                    <td class="text-center">{{ beneficiaire.matricule }} </td>
+                    <td class="text-left">{{ beneficiaire.nom }} {{ beneficiaire.prenoms|title }}</td>
+                    <td class="text-center">{{ beneficiaire.sexe }}</td>
+                    <td class="text-center">{{ beneficiaire.flotte }} / {{ beneficiaire.telephone }}</td>
+                    <td class="text-left">{{ beneficiaire.user.email }}</td>
+                    <td class="text-left">{{ beneficiaire.domicile|title }}</td>
+                    <td class="text-left">
+                        {% if not beneficiaire.domaines.empty %}
+                          {% for domaine in beneficiaire.domaines %}
+                              {{ domaine.libelle|capitalize }}
+                              {% if not loop.last %}, {% endif %}
+                          {% endfor %}
+                        {% endif %}
+                    </td>
+                    <td>
+                      <a href="{{ path('admin_beneficiaires_show', { 'id': beneficiaire.id }) }}"><span class="glyphicon glyphicon-zoom-in"></span></a> &nbsp; | &nbsp;
+                      <a href="{{ path('admin_beneficiaires_edit', { 'id': beneficiaire.id }) }}"><span class="glyphicon glyphicon-edit"></span></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+</section>
+{% endblock %}
+
+
+{% block javascripts %}
+  <script type="text/javascript" src="{{ asset('vendor/foundation/plateforme/js/jquery.min.js')}} "></script>
+    <script type="text/javascript" src="{{ asset('vendor/foundation/plateforme/js/foundation.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/bootstrap/js/dataTables.bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js')}}"></script>
+    <script>
+      $(function(){ $(document).foundation(); });
+      $(document).ready(function(){
+        // disable default behavior for links - prevents iframe logging to
+        // browsing history, requiring multiple back-button clicks to go back one page
+        $('.iframe-body a[href=#]').click(function(e) {
+          e.preventDefault();
+        });
+      });
+    </script>
+
+    <script>
+	    $(document).ready(function(){$(document).foundation();
+		$(".off-canvas-submenu").hide();
+		$(".off-canvas-submenu-call").click(function() {
+			var icon = $(this).parent().next(".off-canvas-submenu").is(':visible') ? '+' : '-';
+			$(this).parent().next(".off-canvas-submenu").slideToggle('fast');
+			$(this).find("span").text(icon);
+		});
+		})
+	</script>
+{% endblock %}

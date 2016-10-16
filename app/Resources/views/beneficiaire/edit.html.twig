@@ -1,0 +1,317 @@
+{% extends 'layoutPlateforme.html.twig' %}
+
+{% block title %} Mise à jour du profil de {{ beneficiaire.nom }} {{ beneficiaire.prenoms }} {% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/semantic/css/semantic.min.css')}} ">
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/foundation/plateforme/css/app.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/foundation/plateforme/css/normalize.css')}} ">
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/foundation/plateforme/css/foundation.css')}} ">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/slideshow2.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/font-awesome-4.5.0/css/font-awesome.min.css')}}" media="all">
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/plateforme.css')}} ">
+{% endblock %}
+
+{% block content %}
+<section class="main-section">
+    <div class="container2">
+      <div class="nzassa-page nzassa-beneficiaire">
+        <div class="small-12">
+
+          <!-- Exploitation -->
+          <div class="row">
+          <!-- Liste des rayonnages -->
+            <div class="small-12 medium-10 large-10 medium-centered columns nzassa-page--enregistrement">
+              <!--{% for flash_message in app.session.flashBag.get('Notification') %}
+              <div class="row">
+                <div class="columns">
+                  <div class="success callout" data-closable="slide-out-right">
+                    <i class="fa fa-exclamation-triangle fa-2x"></i>
+                    <span>{{ flash_message }}</span>
+                    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}-->
+              <h1>Enregistrement des formulaires</h1>
+
+              {{ form_start(edit_form) }}
+                  <div class="ui top attached tabular menu">
+  								  <a class="item active" data-tab="first">IDENTITE</a>
+  								  <a class="item" data-tab="second">ADRESSE & SITUATION FAMILLIALE</a>
+  								  <a class="item" data-tab="third">SITUATION PROFESSIONNELLE</a>
+  								</div>
+                  <div class="ui bottom attached tab segment active" data-tab="first">
+									<div class="row">
+									    <div class="medium-10 medium-centered columns">
+									        <div class="row">
+                                                <div class="medium-8 columns">
+                                                    <div class="row">
+                                                    <div class="columns">
+                                                        {{ form_label(edit_form.nom, 'Nom de famille')}}
+                                                        {{ form_errors(edit_form.nom) }}
+                                                        {{ form_widget(edit_form.nom) }}
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="columns">
+                                                        {{ form_label(edit_form.prenoms, 'Prenoms')}}
+                                                        {{ form_errors(edit_form.prenoms) }}
+                                                        {{ form_widget(edit_form.prenoms)}}
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="medium-4 columns">
+                                                   <div class="row">
+                                                       <div class="columns medium-8 text-center">
+                                                           <img id="blah" src="#" alt="Votre photo de profil" />
+                                                       </div>
+                                                   </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="medium-8 columns">
+                                                    <div class="row">
+                                                        <div class="medium-7 columns">
+                                                            {{ form_label(edit_form.naissance, 'Date de naissance')}}
+                                                            {{ form_errors(edit_form.naissance) }}
+                                                            {{ form_widget(edit_form.naissance) }}
+
+                                                        </div>
+                                                        <div class="medium-5 columns">
+                                                            {{ form_label(edit_form.sexe, 'Sexe')}}
+                                                            {{ form_errors(edit_form.sexe) }}
+                                                            {{ form_widget(edit_form.sexe) }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="columns">
+                                                            {{ form_label(edit_form.nationalite, 'Nationalité')}}
+                                                            {{ form_errors(edit_form.nationalite) }}
+                                                            {{ form_widget(edit_form.nationalite) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="medium-4 align-self-bottom columns">
+                                                    {{ form_label(edit_form.photo) }}
+                                                    {{ form_errors(edit_form.photo) }}
+                                                    {{ form_widget(edit_form.photo) }}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="columns small-1 small-offset-11 text-right">
+                                                   <div class="text-right ui attached tabular menu">
+                                                       <a class="item button warning" data-tab="second">Suivant</a>
+                                                   </div>
+                                                </div>
+                                            </div>
+									    </div>
+									</div>
+								  </div>
+                  <div class="ui bottom attached tab segment" data-tab="second">
+								    <div class="row">
+								        <div class="columns medium-8 medium-centered">
+								            <div class="row">
+                                                <div class="columns medium-6">
+                                                    {{ form_label(edit_form.domicile, 'Adresse(Domicile)')}}
+                                                    {{ form_errors(edit_form.domicile)}}
+                                                    {{ form_widget(edit_form.domicile)}}
+                                                </div>
+                                                <div class="columns medium-6">
+                                                    {{ form_label(edit_form.user, 'Adresse mail') }}
+                                                    {{ form_errors(edit_form.user)}}
+                                                    {{ form_widget(edit_form.user)}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="columns medium-6">
+                                                    {{ form_label(edit_form.flotte, 'Telephone(flotte)')}}
+                                                    {{ form_errors(edit_form.flotte)}}
+                                                    {{ form_widget(edit_form.flotte)}}
+                                                </div>
+                                                <div class="columns medium-6">
+                                                    {{ form_label(edit_form.telephone, 'Autre contact') }}
+                                                    {{ form_errors(edit_form.telephone) }}
+                                                    {{ form_widget(edit_form.telephone) }}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="columns medium-6">
+                                                    {{ form_label(edit_form.famille, 'Situation familliale')}}
+                                                    {{ form_errors(edit_form.famille)}}
+                                                    {{ form_widget(edit_form.famille)}}
+                                                </div>
+                                                <div class="columns medium-6">
+                                                    {{ form_label(edit_form.enfant, "Nombre d'enfants") }}
+                                                    {{ form_errors(edit_form.enfant) }}
+                                                    {{ form_widget(edit_form.enfant) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="columns small-1 small-offset-11 text-right">
+                                                   <div class="text-right ui attached tabular menu">
+                                                       <a class="item button warning" data-tab="third">Suivant</a>
+                                                   </div>
+                                                </div>
+                                            </div>
+								        </div>
+								    </div>
+								</div>
+								<div class="ui bottom attached tab segment" data-tab="third">
+								    <div class="row">
+								        <div class="columns medium-8 medium-centered">
+								            <div class="row">
+                              <div class="columns medium-6">
+                                  {{ form_label(edit_form.professionnel, 'Situation professionnelle')}}
+                                  {{ form_errors(edit_form.professionnel)}}
+                                  {{ form_widget(edit_form.professionnel)}}
+                              </div>
+                              <div class="columns medium-6">
+                                  {{ form_label(edit_form.fonction, 'Votre fonction')}}
+                                  {{ form_errors(edit_form.fonction)}}
+                                  {{ form_widget(edit_form.fonction)}}
+                              </div>
+                          </div>
+                          <div class="row">
+                            <div class="columns medium-5">
+                                {{ form_label(edit_form.bancaire)}}
+                                {{ form_errors(edit_form.bancaire)}}
+                                {{ form_widget(edit_form.bancaire)}}
+                            </div>
+                            <div class="columns medium-4">
+                                {{ form_label(edit_form.banque, 'La banque (si oui)')}}
+                                {{ form_errors(edit_form.banque)}}
+                                {{ form_widget(edit_form.banque)}}
+                            </div>
+                            <div class="columns medium-3">
+                                {{ form_label(edit_form.dateouverture, 'Date ouverture')}}
+                                {{ form_errors(edit_form.dateouverture)}}
+                                {{ form_widget(edit_form.dateouverture)}}
+                            </div>
+                          </div>
+
+                          <div class="row">
+                                                <div class="small-8 columns">
+                                                    {{ form_label(edit_form.zone, 'Commune de formation Bara')}}
+                                                    {{ form_errors(edit_form.zone)}}
+                                                    {{ form_widget(edit_form.zone)}}
+                                                </div>
+                                                <div class="small-4 columns">
+                                                    {{ form_label(edit_form.vague, 'Vague')}}
+                                                    {{ form_errors(edit_form.vague)}}
+                                                    {{ form_widget(edit_form.vague)}}
+                                                </div>
+                                            </div>
+                          <div class="row">
+                              <div class="columns">
+                                  {{ form_label(edit_form.domaines, 'Quels sont vos domaines de compétences?')}}
+                                  {{ form_errors(edit_form.domaines)}}
+                                  {{ form_widget(edit_form.domaines)}}
+                              </div>
+                          </div>
+                          <div class="row">
+                                                <div class="columns">
+                                                    {{ form_label(edit_form.projet, 'Quel est votre projet ?')}}
+                                                    {{ form_errors(edit_form.projet)}}
+                                                    {{ form_widget(edit_form.projet)}}
+                                                </div>
+                                            </div>
+                          <div class="row">
+                                                <div class="columns">
+                                                    {{ form_label(edit_form.entreprise, 'Quel est le nom de votre future entreprise ?')}}
+                                                    {{ form_errors(edit_form.entreprise)}}
+                                                    {{ form_widget(edit_form.entreprise)}}
+                                                </div>
+                                            </div>
+                          <div class="row">
+                                                <div class="columns medium-6">
+                                                    {{ form_label(edit_form.activite, 'Êtes-vous déjà en activité ?')}}
+                                                    {{ form_errors(edit_form.activite)}}
+                                                    {{ form_widget(edit_form.activite)}}
+                                                </div>
+                                                <div class="columns medium-6">
+                                                    {{ form_label(edit_form.dateactivite, 'Quand?')}}
+                                                    {{ form_errors(edit_form.dateactivite)}}
+                                                    {{ form_widget(edit_form.dateactivite)}}
+                                                </div>
+                          </div>
+                          <div class="row">
+                              <div class="columns text-right">
+                                  <input type="submit" value="Mettre à jour" class="button warning">
+                              </div>
+                          </div>
+								        </div>
+								    </div>
+
+								</div>
+
+              {{ form_end(edit_form) }}
+
+            </div>
+                  <!-- \Liste des rayonnages -->
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+{% endblock %}
+
+{% block javascripts %}
+  <script type="text/javascript" src="{{ asset('vendor/foundation/plateforme/js/jquery.min.js')}} "></script>
+    <script type="text/javascript" src="{{ asset('vendor/foundation/plateforme/js/foundation.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/semantic/js/semantic.min.js')}}"></script>
+    //
+    <script>
+      $(function(){ $(document).foundation(); });
+      $(document).ready(function(){
+        // disable default behavior for links - prevents iframe logging to
+        // browsing history, requiring multiple back-button clicks to go back one page
+        $('.iframe-body a[href=#]').click(function(e) {
+          e.preventDefault();
+        });
+      });
+    </script>
+
+    <script>
+	    $(document).ready(function(){$(document).foundation();
+		$(".off-canvas-submenu").hide();
+		$(".off-canvas-submenu-call").click(function() {
+			var icon = $(this).parent().next(".off-canvas-submenu").is(':visible') ? '+' : '-';
+			$(this).parent().next(".off-canvas-submenu").slideToggle('fast');
+			$(this).find("span").text(icon);
+		});
+		})
+	</script>
+	<script>
+	  $('.menu .item')
+		  .tab()
+		;
+	</script>
+
+    <script type='text/javascript'>//<![CDATA[
+        $(window).load(function(){
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#blah').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#beneficiaire_photo_file").change(function(){
+                readURL(this);
+            });
+        });//]]>
+
+    </script>
+{% endblock %}

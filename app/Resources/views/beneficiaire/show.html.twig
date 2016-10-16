@@ -1,0 +1,276 @@
+{% extends 'layoutPlateforme.html.twig' %}
+
+{% block title %}{{ beneficiaire.nom }} {{ beneficiaire.prenoms|title}} {% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/semantic/css/semantic.min.css')}} ">
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/foundation/plateforme/css/app.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/foundation/plateforme/css/normalize.css')}} ">
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/foundation/plateforme/css/foundation.css')}} ">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/slideshow2.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/font-awesome-4.5.0/css/font-awesome.min.css')}}" media="all">
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/plateforme.css')}} ">
+{% endblock %}
+
+{% block content %}
+<section class="main-section">
+    <div class="container2">
+      <div class="nzassa-page nzassa-beneficiaire">
+        <div class="small-12">
+
+          <!-- Exploitation -->
+          <div class="row">
+          <!-- Liste des rayonnages -->
+            <div class="small-12 medium-10 large-10 medium-centered columns nzassa-page--show">
+
+              <div class="row">
+                                <div class="columns">
+                                    <div class="ui column grid">
+                                      <div class="column">
+                                        <div class="ui raised segment">
+                                            <a class="ui orange ribbon label">{{ beneficiaire.nom }} {{ beneficiaire.prenoms }}</a>
+                                            <p></p><br>
+                                            <p style="margin-bottom:7px;">
+                                                <div class="row">
+                                                    <div class="medium-10 medium-centered columns">
+                                                        <div class="row">
+                                                            <div class="medium-3 columns">
+                                                                {% if beneficiaire.photo.url %}
+                                                                    <img src="{{ asset('uploads/profils/' ~ beneficiaire.photo.id ~ '.' ~ beneficiaire.photo.url )}}" alt="{{ beneficiaire.nom }} {{ beneficiaire.prenoms }}" class="thumbnail" />
+                                                                {% else %}
+                                                                    <img id="blah" src="{{ asset('uploads/profils/avatar.png')}}" alt="{{ beneficiaire.nom }} {{ beneficiaire.prenoms }}" class="thumbnail" />
+                                                                {% endif %}
+
+                                                            </div>
+                                                            <div class="medium-9 columns">
+                                                                <div class="row">
+                                                                    <div class="columns">
+                                                                        <span class="libelle">Nom : </span>
+                                                                        <span class="donnee">{{ beneficiaire.nom }}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="columns">
+                                                                        <span class="libelle">Prenoms : </span>
+                                                                        <span class="donnee">{{ beneficiaire.prenoms }}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="columns">
+                                                                        <span class="libelle">Date de naissance : </span>
+                                                                        <span class="donnee">{{ beneficiaire.naissance }}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="columns">
+                                                                        <span class="libelle">Sexe : </span>
+                                                                        <span class="donnee">
+                                                                          {% if beneficiaire.sexe is same as ('M') %}
+                                                                              <i class="male icon"></i> Masculin
+                                                                          {% else %}
+                                                                              <i class="female icon"></i> Feminin
+                                                                          {% endif %}
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="columns">
+                                                                        <span class="libelle">Nationalité : </span>
+                                                                        <span class="donnee">{{ beneficiaire.nationalite }}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="columns">
+                                                                        <span class="libelle">Matricule : </span>
+                                                                        <span class="donnee">{{ beneficiaire.matricule }}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="columns medium-6">
+                                                                <div class="row">
+                                                                    <div class="columns">
+                                                                        <span class="libelle">Domicilié à :</span>
+                                                                        <span class="donnee">{{ beneficiaire.domicile }}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="columns">
+                                                                        <span class="libelle">Adresse email :</span>
+                                                                        <span class="donnee">{{ beneficiaire.user }}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="columns">
+                                                                        <span class="libelle">Contact :</span>
+                                                                        <span class="donnee">{{ beneficiaire.flotte }} / {{ beneficiaire.telephone }}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="columns">
+                                                                        <span class="libelle">Situation familliale :</span>
+                                                                        <span class="donnee">{{ beneficiaire.famille }}
+                                                                          {% if beneficiaire.enfant %}
+                                                                            avec {{ beneficiaire.enfant }}
+                                                                            {% if (beneficiaire.enfant) > 1 %}
+                                                                                enfants
+                                                                            {% else %}
+                                                                                enfant
+                                                                            {% endif %}
+                                                                          {% else %}
+                                                                              sans enfant
+                                                                          {% endif %}
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="columns medium-6 separation">
+                                                                <div class="row">
+                                                                    <div class="columns">
+                                                                        <span class="libelle">Situation professionnelle :</span>
+                                                                        <span class="donnee">{{ beneficiaire.professionnel }}</span>
+                                                                    </div>
+                                                                </div>
+                                                                {% if (beneficiaire.professionnel) != ('Sans emploi') %}
+                                                                <div class="row">
+                                                                    <div class="columns">
+                                                                        <span class="libelle">Fonction :</span>
+                                                                        <span class="donnee">{{ beneficiaire.fonction }}</span>
+                                                                    </div>
+                                                                </div>
+                                                                {% endif %}
+
+                                                                <div class="row">
+                                                                    <div class="columns">
+                                                                        <span class="libelle">Compte bancaire :</span>
+                                                                        {% if beneficiaire.bancaire %}
+                                                                            <span class="donnee">{{ beneficiaire.banque}} depuis {{ beneficiaire.dateouverture}}</span>
+                                                                        {% else %}
+                                                                            Non
+                                                                        {% endif %}
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="columns">
+                                                                        <span class="libelle">Formation à :</span>
+                                                                        <span class="donnee">{{ beneficiaire.zone }} dans la vague {{ beneficiaire.vague }}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="columns">
+                                                                        <span class="libelle">Domaines de compétence :</span>
+                                                                        <span class="donnee">{{beneficiaire.fonction}}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </p><br>
+                                            <a class="ui green ribbon label" style="margin-top: 25px">{{ beneficiaire.entreprise|upper}}</a>
+                                            <p></p><br>
+                                            <div class="row">
+                                                <div class="columns medium-10 medium-centered segment  nzassa-idee">
+                                                    <div class="row">
+                                                        <div class="columns">
+                                                            {{ beneficiaire.projet }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="columns">
+                                                          {% if beneficiaire.activite %}
+                                                              En activité depuis <span class="donnee">{{ beneficiaire.dateactivite }}</span>
+                                                          {% else %}
+                                                              Pas encore en activité et envisage commencer en {{ beneficiaire.dateactivite }}
+                                                          {% endif %}
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br><br>
+                                            <div class="row">
+                                                <div class="columns text-right">
+                                                    <div class="ui buttons">
+                                                        <a href="{{ path('admin_beneficiaires_edit', { 'id': beneficiaire.id }) }}">
+                                                          <button class="ui orange button"><i class="edit icon"></i>Modifier</button>
+                                                        </a>
+                                                        <div class="or"></div>
+                                                        <a href="{{ path('admin_beneficiaires_new') }}">
+                                                          <button class="ui green button"><i class="write square icon"></i>Ajouter</button>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+  </div>
+        <!-- \Liste des rayonnages -->
+      </div>
+
+    </div>
+  </div>
+</div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('vendor/foundation/plateforme/js/jquery.min.js')}} "></script>
+<script type="text/javascript" src="{{ asset('vendor/foundation/plateforme/js/foundation.js')}}"></script>
+<script type="text/javascript" src="{{ asset('vendor/semantic/js/semantic.min.js')}}"></script>
+//
+<script>
+$(function(){ $(document).foundation(); });
+$(document).ready(function(){
+// disable default behavior for links - prevents iframe logging to
+// browsing history, requiring multiple back-button clicks to go back one page
+$('.iframe-body a[href=#]').click(function(e) {
+e.preventDefault();
+});
+});
+</script>
+
+<script>
+$(document).ready(function(){$(document).foundation();
+$(".off-canvas-submenu").hide();
+$(".off-canvas-submenu-call").click(function() {
+var icon = $(this).parent().next(".off-canvas-submenu").is(':visible') ? '+' : '-';
+$(this).parent().next(".off-canvas-submenu").slideToggle('fast');
+$(this).find("span").text(icon);
+});
+})
+</script>
+<script>
+$('.menu .item')
+.tab()
+;
+</script>
+
+<script type='text/javascript'>//<![CDATA[
+$(window).load(function(){
+  function readURL(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('#blah').attr('src', e.target.result);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+
+  $("#nzassaPhotoUpload").change(function(){
+      readURL(this);
+  });
+});//]]>
+
+</script>
+{% endblock %}

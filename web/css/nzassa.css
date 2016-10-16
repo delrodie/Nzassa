@@ -1,0 +1,148 @@
+#nzassa-section-accroche { background-color: rgba(247, 200, 81, 0.3); }
+#nzassa-section-accroche .nzassa-accroche { text-align: center; font-family: "Times Roman"; font-style: italic; padding: 25px 0; font-size: 1.5em; font-weight: bold; color: #BB1850; }
+
+#nzassa-section-caroussel { top: 0px; position: relative; z-index: 1; }
+
+#nzassa-section-menu { z-index: 2; }
+#nzassa-section-menu .columns { border: solid 0px #ccc; }
+#nzassa-section-menu .menu-information { background-color: #222; padding-top: 3px; padding-bottom: 3px; }
+#nzassa-section-menu .menu-information a { color: #ccc; font-size: 0.8em; font-weight: bold; }
+#nzassa-section-menu .menu-information a:hover { color: #BB1850; }
+#nzassa-section-menu .menu-information .columns:first-child { border-right: solid 1px rgba(204, 204, 204, 0.7); }
+#nzassa-section-menu .menu-information .columns:last-child { border-left: solid 1px rgba(204, 204, 204, 0.7); }
+#nzassa-section-menu .menu-titre { color: #333F50; text-transform: uppercase; font-size: 0.95em; font-weight: bold; }
+#nzassa-section-menu .large { margin-top: 30px; }
+#nzassa-section-menu .petit { margin-top: 10px; }
+#nzassa-section-menu .menu-titre:hover { color: #BB1850; }
+#nzassa-section-menu .menu-ecran-large, #nzassa-section-menu .menu-ecran-petit { border-bottom: solid 1px rgba(204, 204, 204, 0.4); background-image: url("../images/bg.jpg"); background-size: cover !important; background-color: rgba(255, 255, 255, 0.7); }
+#nzassa-section-menu .filigramme { background-color: rgba(255, 255, 255, 0.8); }
+#nzassa-section-menu .filigramme-admin { background-color: rgba(0, 0, 0, 0.7); }
+#nzassa-section-menu .filigramme-admin a { color: rgba(255, 255, 255, 0.6); }
+#nzassa-section-menu .filigramme-admin .menu-down a { color: rgba(0, 0, 0, 0.6); }
+#nzassa-section-menu .filigramme-admin .menu-down a:hover { color: #BB1850; }
+#nzassa-section-menu .menu-ecran-petit img { margin-left: 150px; }
+#nzassa-section-menu .menu-ecran-petit .logo { text-align: center; }
+
+#nzassa-section-avantages { margin: 50px auto; }
+#nzassa-section-avantages .nzassa-avantages { text-align: center; }
+#nzassa-section-avantages .nzassa-avantages .rubrique { border: solid 1px #ccc; padding-left: 15px; padding-right: 15px; margin: auto 5px; border-top-left-radius: 13px; border-top-right-radius: 13px; height: 350px; }
+#nzassa-section-avantages .nzassa-avantages .rubrique p { margin: 0; padding: 3px 0; text-align: justify; font-size: .9em; line-height: 18px; border: solid 0px #f00; }
+#nzassa-section-avantages .nzassa-avantages img { width: 150px; margin-top: 10px; margin-bottom: 25px; border: solid 0px #f00; }
+
+#nzassa-section-presentation .position-relative { position: relative; }
+#nzassa-section-presentation .bg-fixe { overflow: hidden; }
+#nzassa-section-presentation .couverture { background: url("../images/bg-participant.jpg"); background-size: cover !important; background-position: 50% 0; background-attachment: fixed !important; background-size: auto 70%; margin: 25px auto; }
+
+.couverture .filigramme { background-color: rgba(247, 200, 81, 0.4); }
+
+.nzassa-presentation { margin: 30px auto; font-size: 1.6em; font-style: italic; font-weight: bold; font-family: 'Times Roman'; color: #710f31; text-align: center; }
+
+#nzassa-section-statistique { margin-top: 25px; margin-bottom: 15px; }
+#nzassa-section-statistique .nzassa-statistique { text-align: center; margin-top: 25px; }
+#nzassa-section-statistique .nzassa-statistique-chiffre { font-size: 2.5em; font-weight: bold; color: #333F50; }
+#nzassa-section-statistique .nzassa-statistique-libelle { font-size: 1.5em; font-weight: bold; color: rgba(51, 63, 80, 0.7); }
+
+#nzassa-section-plan-site { margin-top: 10px; }
+#nzassa-section-plan-site .nzassa-plan { background-color: rgba(153, 153, 153, 0.3); }
+#nzassa-section-plan-site .nzassa-plan .plan, #nzassa-section-plan-site .nzassa-plan .termes { margin-top: 35px; margin-bottom: 20px; }
+#nzassa-section-plan-site .nzassa-plan .plan h4, #nzassa-section-plan-site .nzassa-plan .termes h4 { font-size: 0.85em; font-weight: bold; text-transform: uppercase; color: #333F50; }
+#nzassa-section-plan-site .nzassa-plan .plan a, #nzassa-section-plan-site .nzassa-plan .termes a { font-size: .75em; color: rgba(51, 63, 80, 0.6); }
+#nzassa-section-plan-site .nzassa-plan .plan a:hover, #nzassa-section-plan-site .nzassa-plan .termes a:hover { color: #BB1850; }
+#nzassa-section-plan-site .nzassa-plan .plan button, #nzassa-section-plan-site .nzassa-plan .termes button { margin-top: 15px; }
+#nzassa-section-plan-site .nzassa-plan .plan .btn-contact, #nzassa-section-plan-site .nzassa-plan .termes .btn-contact { background-color: rgba(51, 63, 80, 0.6); color: #fff; font-weight: bold; padding: 10px 15px; border-radius: 5px; }
+#nzassa-section-plan-site .nzassa-plan .termes { text-align: center; margin-top: 0; margin-bottom: 15px; }
+#nzassa-section-plan-site .nzassa-plan .termes a { padding-left: 7px; padding-right: 7px; border-right: solid 1px #ccc; }
+#nzassa-section-plan-site .nzassa-plan .termes a:last-child { border-right: 0; }
+#nzassa-section-plan-site .nzassa-plan .termes hr { margin-top: 25px; margin-bottom: 0; padding-bottom: 0; }
+#nzassa-section-plan-site .nzassa-copyright { background-color: #101318; color: rgba(153, 204, 255, 0.4); font-size: .75em; padding-top: 3px; padding-bottom: 3px; }
+
+#NzassaEcrireForm h5 { border-bottom: solid 1px rgba(204, 204, 204, 0.6); font-size: .9em; text-transform: uppercase; color: #333f50; font-weight: bold; }
+#NzassaEcrireForm .information { font-size: .7em; font-style: italic; color: #bb1850; }
+#NzassaEcrireForm .btn-envoie { background-color: rgba(51, 63, 80, 0.6); color: #fff; font-weight: bold; padding: 7px 10px; border-radius: 3px; }
+
+#nzassa-section-page-titre { background: url("../images/bg.jpg"); background-size: cover; }
+#nzassa-section-page-titre .nzassa-page-titre { font-size: 3em; font-weight: bold; margin: 75px auto; padding-top: 5px; padding-bottom: 5px; text-align: center; color: #8699b2; }
+#nzassa-section-page-titre .filigramme { background: rgba(0, 0, 0, 0.6); }
+
+#nzassa-section-page-contenu .nzassa-quiSommesNous { margin-top: 75px; margin-bottom: 75px; }
+#nzassa-section-page-contenu .nzassa-quiSommesNous h4 { font-weight: bold; color: #333f50; }
+#nzassa-section-page-contenu .nzassa-quiSommesNous p { text-align: justify; }
+#nzassa-section-page-contenu .nzassa-communaute-couverture { background: url("../images/bg-communaute.jpg"); background-attachment: fixed !important; background-position: 50% 0; background-size: cover !important; background-size: auto 70%; }
+#nzassa-section-page-contenu .nzassa-communaute-couverture .filigramme { background: rgba(0, 0, 0, 0.6); }
+#nzassa-section-page-contenu .nzassa-communaute-couverture h2 { font-size: 1.7em; font-weight: bold; padding-top: 25px; padding-right: 50px; padding-left: 50px; text-align: center; color: white; }
+#nzassa-section-page-contenu .nzassa-communaute-couverture .libelle { font-size: 1.1em; font-weight: bold; font-style: italic; text-align: justify; color: #8699b2; }
+#nzassa-section-page-contenu .nzassa-adhesion-kit { margin-top: 60px; margin-bottom: 30px; }
+#nzassa-section-page-contenu .nzassa-adhesion-kit h4 { font-size: 1em; font-weight: bold; padding-top: 50px; text-align: center; text-transform: uppercase; color: #333F50; }
+#nzassa-section-page-contenu .nzassa-adhesion-kit li:last-child { padding-bottom: 50px; }
+#nzassa-section-page-contenu .nzassa-adhesion-kit .adherer { background-color: rgba(51, 63, 80, 0.1); }
+#nzassa-section-page-contenu .nzassa-adhesion-kit .adherer:hover { background-color: rgba(247, 200, 81, 0.3); }
+#nzassa-section-page-contenu .nzassa-adhesion-kit .kit { background-color: rgba(40, 170, 99, 0.1); }
+#nzassa-section-page-contenu .nzassa-adhesion-kit .kit:hover { background-color: rgba(247, 200, 81, 0.3); }
+#nzassa-section-page-contenu .nzassa-marche img, #nzassa-section-page-contenu .nzassa-financement img, #nzassa-section-page-contenu .nzassa-soutien img { float: left; padding-right: 25px; }
+#nzassa-section-page-contenu .nzassa-marche h5, #nzassa-section-page-contenu .nzassa-financement h5, #nzassa-section-page-contenu .nzassa-soutien h5 { font-weight: bold; margin-top: 20px; color: rgba(51, 63, 80, 0.7); }
+#nzassa-section-page-contenu .nzassa-marche ol, #nzassa-section-page-contenu .nzassa-financement ol, #nzassa-section-page-contenu .nzassa-soutien ol { margin-left: 25px; padding-left: 30px; }
+
+#nzassa-section-inscription form { margin-top: 45px; }
+#nzassa-section-inscription .nzassa-inscription label { font-size: .9em; font-weight: bold; }
+#nzassa-section-inscription .nzassa-liste-inscrits th { font-size: .7em; text-transform: uppercase; text-align: center; }
+#nzassa-section-inscription .nzassa-liste-inscrits td { font-size: .8em; }
+#nzassa-section-inscription .nzassa-liste-inscrits caption { text-transform: uppercase; text-decoration: underline; }
+#nzassa-section-inscription .nzassa-liste-inscrits .nzassa-icon { color: rgba(204, 204, 204, 0.7); text-align: center; }
+#nzassa-section-inscription .nzassa-liste-inscrits .nzassa-icon a { color: #F7C851; }
+#nzassa-section-inscription .nzassa-liste-recherche { margin-top: 25px; }
+#nzassa-section-inscription .nzassa-liste-recherche h2 { text-transform: uppercase; text-decoration: underline; font-size: 1.3em; font-weight: bold; color: #333F50; margin-bottom: 20px; }
+#nzassa-section-inscription .nzassa-liste-recherche .input-group { font-style: italic; }
+#nzassa-section-inscription .nzassa-liste-recherche .input-group:hover { font-style: normal; }
+#nzassa-section-inscription .nzassa-liste-recherche .input-group-field { border-top-left-radius: 7px; border-bottom-left-radius: 7px; }
+
+#nzassa-admin .nzassa-admin-statistiques { margin-top: 25px; }
+#nzassa-admin .nzassa-admin-statistiques fieldset { border: solid 1px rgba(204, 204, 204, 0.4); }
+#nzassa-admin .nzassa-admin-statistiques legend { margin-left: 25px; color: #333F50; font-weight: bold; text-transform: uppercase; font-size: .8em; }
+#nzassa-admin .nzassa-admin-statistiques .btn { background-image: url("../images/bg.jpg"); background-color: #cccccc; border-radius: 7px; }
+#nzassa-admin .nzassa-admin-statistiques .btn:last-child { margin-right: 10px; }
+#nzassa-admin .nzassa-admin-statistiques .btn:hover { background-image: url("../images/bg.jpg"); background-size: cover !important; background-color: transparent; }
+#nzassa-admin .nzassa-admin-statistiques .chiffre { font-weight: bold; font-size: 1.3em; color: #F7C851; }
+#nzassa-admin .nzassa-admin-tableau { margin-top: 35px; margin-bottom: 100px; }
+#nzassa-admin .nzassa-admin-tableau h2 { color: #333F50; font-weight: bold; font-size: 1.4em; text-transform: uppercase; text-decoration: underline; text-align: center; margin-bottom: 10px; padding-bottom: 25px; }
+#nzassa-admin .nzassa-admin-tableau thead { background-color: #ccc; background-image: url("../images/bg.jpg"); color: rgba(255, 255, 255, 0.6); }
+#nzassa-admin .nzassa-admin-tableau thead th { text-align: center; text-transform: uppercase; }
+#nzassa-admin .nzassa-admin-tableau .filigramme { background-color: rgba(0, 0, 0, 0.7); }
+#nzassa-admin .nzassa-admin-tableau .nzassa-icon { color: rgba(204, 204, 204, 0.7); text-align: center; }
+#nzassa-admin .nzassa-admin-tableau .nzassa-icon a { color: #F7C851; }
+#nzassa-admin .nzassa-admin-tableau .nzassa-login a { color: #F7C851; font-size: .87em; }
+#nzassa-admin form { margin-top: 45px; }
+#nzassa-admin .nzassa-inscription label { font-size: .9em; font-weight: bold; }
+#nzassa-admin .nzassa-inscription input, #nzassa-admin .nzassa-inscription textarea, #nzassa-admin .nzassa-inscription select { color: #BB1850; }
+#nzassa-admin .nzassa-inscription input.button { color: white; font-weight: bold; }
+#nzassa-admin .help-text { color: #BB1850; }
+
+#nzassaChoix-Emploi1, #nzassaChoix-Emploi2, #nzassaChoix-Emploi3, #nzassaChoix-Banque1, #nzassaChoix-Banque2, #nzassaChoix-Activite1, #nzassaChoix-Activite2 { display: none; }
+
+.nzassa-forum .desactivation, .nzassa-forum table, .nzassa-forum th { border: solid 0px white; }
+.nzassa-forum table { margin-top: 25px; }
+.nzassa-forum th { text-align: center; }
+.nzassa-forum td:first-child { text-align: center; }
+.nzassa-forum img { width: 55px; border-radius: 25px; }
+.nzassa-forum .nzassa-user { font-size: .95em; color: rgba(51, 63, 80, 0.7); }
+.nzassa-forum .nzassa-user a { color: rgba(51, 63, 80, 0.9); text-decoration: none; font-weight: bold; }
+.nzassa-forum .nzassa-datePost { font-size: .75em; color: rgba(51, 63, 80, 0.5); }
+.nzassa-forum p { padding-left: 20px; padding-right: 20px; }
+.nzassa-forum .nzassa-sujet { padding-top: 50px; padding-bottom: 75px; }
+.nzassa-forum .nzassa-sujet img { width: 100px; }
+.nzassa-forum .nzassa-sujet-statistique { padding-top: 10px; }
+.nzassa-forum .nzassa-sujet-contenu { padding-top: 5px; }
+.nzassa-forum .nzassa-sujet-datePost { font-size: .85em; color: rgba(51, 63, 80, 0.6); }
+.nzassa-forum .nzassa-sujet-auteur a { font-size: 1.1em; color: rgba(51, 63, 80, 0.85); font-weight: bold; text-decoration: none; }
+.nzassa-forum .nzassa-sujet-auteur a:hover { color: #F7C851; }
+.nzassa-forum .nzassa-sujet-statistique a { color: rgba(51, 63, 80, 0.85); text-decoration: none; }
+.nzassa-forum .nzassa-sujet-statistique a:hover { color: #F7C851; }
+.nzassa-forum .nzassa-sujet-statistique a:hover span { color: #BB1850; }
+.nzassa-forum .nzassa-sujet-verrou { vertical-align: middle; }
+.nzassa-forum .nzassa-sujet-verrou a { color: rgba(51, 63, 80, 0.75); }
+.nzassa-forum .nzassa-sujet-verrou a :hover { color: #f7c851; }
+.nzassa-forum ul { display: inline; list-style-type: none; }
+.nzassa-forum li { display: inline; padding-right: 15px; }
+
+.nzassa-connexion { padding-top: 50px; padding-bottom: 50px; }
+.nzassa-connexion .alert i { color: #BB1850; }
+.nzassa-connexion input { font-style: italic; color: #333F50; }

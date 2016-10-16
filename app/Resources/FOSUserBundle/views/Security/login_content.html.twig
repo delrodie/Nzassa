@@ -1,0 +1,44 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if error %}
+
+    <div class="row">
+      <div class="columns">
+        <div class="alert callout" data-closable="slide-out-right">
+          <i class="fa fa-exclamation-triangle fa-2x"></i>
+          <span>{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+          <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+{% endif %}
+
+<form action="{{ path("fos_user_security_check") }}" method="post">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    <div class="columns">
+      <label for="username">
+        <i class="fa fa-user fa-lg"></i>
+        {{ 'security.login.username'|trans }}
+      </label>
+      <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+		</div>
+
+		<div class="columns">
+        <label for="password">
+          <i class="fa fa-lock fa-lg"></i>
+          {{ 'security.login.password'|trans }}
+        </label>
+				<input type="password" id="password" name="_password" required="required" />
+		</div>
+
+    <div class="columns">
+        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+		</div>
+
+		<div class="columns text-right">
+				<input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="button warning" />
+		</div>
+</form>

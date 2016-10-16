@@ -1,0 +1,61 @@
+{% extends "layoutWebsite.html.twig" %}
+
+{% block title %}
+  Connexion a la Plateforme
+{% endblock %}
+
+{% block content %}
+
+<section id="nzassa-section-page-titre">
+  <div class="filigramme">
+  <div class="row">
+    <div class="columns nzassa-page-titre">
+      Connexion
+    </div>
+  </div>
+  </div>
+
+</section>
+
+<section id="nzassa-section-page-contenu">
+  <div class="nzassa-connexion">
+    <div class="row filigramme">
+      <div class="medium-11 medium-centered large-8 large-centered columns">
+        <div class="row">
+          <div class="small-10 medium-7 large-7 small-centered columns">
+
+            <!--<form action="" method="get">
+              <div class="row small-up-1">
+                <div class="columns">
+                  <label for="nzassaLogin">
+                    <i class="fa fa-user fa-lg"></i>
+                    Login
+                  </label>
+                  <input type="text" name="nzassaLogin" value="" placeholder="">
+                </div>
+                <div class="columns">
+                  <label for="nzassaPassword">
+                    <i class="fa fa-lock fa-lg"></i>
+                    Mot de passe
+                  </label>
+                  <input type="password" name="nzassaPassword" value="" placeholder="">
+                </div>
+                <div class="columns">
+                  <input type="checkbox" name="nzassaSouvenir" value="">
+                  <label for="nzassaSouvenir">Se souvenir de moi</label>
+                </div>
+                <div class="columns text-right">
+                  <input type="submit" name="" value="Connectez-vous" class="button warning">
+                </div>
+              </div>
+            </form>-->
+            {{ include('FOSUserBundle:Security:login_content.html.twig') }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include 'presentation.html.twig' %}
+
+{% endblock content %}

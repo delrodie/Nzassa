@@ -1,0 +1,40 @@
+{% extends "layoutWebsite.html.twig" %}
+
+{% block title %}
+  Modification du profil de
+  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+     {{ app.user.username }}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<section id="nzassa-section-page-titre">
+  <div class="filigramme">
+  <div class="row">
+    <div class="columns nzassa-page-titre">
+      Modification des paramètres de connexion
+    </div>
+  </div>
+  </div>
+
+</section>
+
+<section id="nzassa-section-page-contenu">
+  <div class="nzassa-connexion">
+    <div class="row filigramme">
+      <div class="medium-11 medium-centered large-8 large-centered columns">
+        <div class="row">
+          <div class="small-10 medium-7 large-7 small-centered columns">
+
+            {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include 'presentation.html.twig' %}
+
+{% endblock content %}

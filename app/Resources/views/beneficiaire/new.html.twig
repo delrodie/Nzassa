@@ -1,0 +1,317 @@
+{% extends 'layoutPlateforme.html.twig' %}
+
+{% block title %}Enregistrements des Beneficiaires {% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/semantic/css/semantic.min.css')}} ">
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/foundation/plateforme/css/app.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/foundation/plateforme/css/normalize.css')}} ">
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/foundation/plateforme/css/foundation.css')}} ">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/slideshow2.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendor/font-awesome-4.5.0/css/font-awesome.min.css')}}" media="all">
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/plateforme.css')}} ">
+{% endblock %}
+
+{% block content %}
+<section class="main-section">
+    <div class="container2">
+      <div class="nzassa-page nzassa-beneficiaire">
+        <div class="small-12">
+
+          <!-- Exploitation -->
+          <div class="row">
+          <!-- Liste des rayonnages -->
+            <div class="small-12 medium-10 large-10 medium-centered columns nzassa-page--enregistrement">
+              <!--{% for flash_message in app.session.flashBag.get('Notification') %}
+              <div class="row">
+                <div class="columns">
+                  <div class="success callout" data-closable="slide-out-right">
+                    <i class="fa fa-exclamation-triangle fa-2x"></i>
+                    <span>{{ flash_message }}</span>
+                    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}-->
+              <h1>Enregistrement des formulaires</h1>
+
+              {{ form_start(form) }}
+                  <div class="ui top attached tabular menu">
+  								  <a class="item active" data-tab="first">IDENTITE</a>
+  								  <a class="item" data-tab="second">ADRESSE & SITUATION FAMILLIALE</a>
+  								  <a class="item" data-tab="third">SITUATION PROFESSIONNELLE</a>
+  								</div>
+                  <div class="ui bottom attached tab segment active" data-tab="first">
+									<div class="row">
+									    <div class="medium-10 medium-centered columns">
+									        <div class="row">
+                                                <div class="medium-8 columns">
+                                                    <div class="row">
+                                                    <div class="columns">
+                                                        {{ form_label(form.nom, 'Nom de famille')}}
+                                                        {{ form_errors(form.nom) }}
+                                                        {{ form_widget(form.nom) }}
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="columns">
+                                                        {{ form_label(form.prenoms, 'Prenoms')}}
+                                                        {{ form_errors(form.prenoms) }}
+                                                        {{ form_widget(form.prenoms)}}
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="medium-4 columns">
+                                                   <div class="row">
+                                                       <div class="columns medium-8 text-center">
+                                                           <img id="blah" src="#" alt="Votre photo de profil" />
+                                                       </div>
+                                                   </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="medium-8 columns">
+                                                    <div class="row">
+                                                        <div class="medium-7 columns">
+                                                            {{ form_label(form.naissance, 'Date de naissance')}}
+                                                            {{ form_errors(form.naissance) }}
+                                                            {{ form_widget(form.naissance) }}
+
+                                                        </div>
+                                                        <div class="medium-5 columns">
+                                                            {{ form_label(form.sexe, 'Sexe')}}
+                                                            {{ form_errors(form.sexe) }}
+                                                            {{ form_widget(form.sexe) }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="columns">
+                                                            {{ form_label(form.nationalite, 'Nationalité')}}
+                                                            {{ form_errors(form.nationalite) }}
+                                                            {{ form_widget(form.nationalite) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="medium-4 align-self-bottom columns">
+                                                    {{ form_label(form.photo, 'Ajouter votre photo', {'label_attr': {'class': 'button warning'}}) }}
+                                                    {{ form_errors(form.photo) }}
+                                                    {{ form_widget(form.photo) }}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="columns small-1 small-offset-11 text-right">
+                                                   <div class="text-right ui attached tabular menu">
+                                                       <a class="item button warning" data-tab="second">Suivant</a>
+                                                   </div>
+                                                </div>
+                                            </div>
+									    </div>
+									</div>
+								  </div>
+                  <div class="ui bottom attached tab segment" data-tab="second">
+								    <div class="row">
+								        <div class="columns medium-8 medium-centered">
+								            <div class="row">
+                                                <div class="columns medium-6">
+                                                    {{ form_label(form.domicile, 'Adresse(Domicile)')}}
+                                                    {{ form_errors(form.domicile)}}
+                                                    {{ form_widget(form.domicile)}}
+                                                </div>
+                                                <div class="columns medium-6">
+                                                    {{ form_label(form.user, 'Adresse mail') }}
+                                                    {{ form_errors(form.user)}}
+                                                    {{ form_widget(form.user)}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="columns medium-6">
+                                                    {{ form_label(form.flotte, 'Telephone(flotte)')}}
+                                                    {{ form_errors(form.flotte)}}
+                                                    {{ form_widget(form.flotte)}}
+                                                </div>
+                                                <div class="columns medium-6">
+                                                    {{ form_label(form.telephone, 'Autre contact') }}
+                                                    {{ form_errors(form.telephone) }}
+                                                    {{ form_widget(form.telephone) }}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="columns medium-6">
+                                                    {{ form_label(form.famille, 'Situation familliale')}}
+                                                    {{ form_errors(form.famille)}}
+                                                    {{ form_widget(form.famille)}}
+                                                </div>
+                                                <div class="columns medium-6">
+                                                    {{ form_label(form.enfant, "Nombre d'enfants") }}
+                                                    {{ form_errors(form.enfant) }}
+                                                    {{ form_widget(form.enfant) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="columns small-1 small-offset-11 text-right">
+                                                   <div class="text-right ui attached tabular menu">
+                                                       <a class="item button warning" data-tab="third">Suivant</a>
+                                                   </div>
+                                                </div>
+                                            </div>
+								        </div>
+								    </div>
+								</div>
+								<div class="ui bottom attached tab segment" data-tab="third">
+								    <div class="row">
+								        <div class="columns medium-8 medium-centered">
+								            <div class="row">
+                              <div class="columns medium-6">
+                                  {{ form_label(form.professionnel, 'Situation professionnelle')}}
+                                  {{ form_errors(form.professionnel)}}
+                                  {{ form_widget(form.professionnel)}}
+                              </div>
+                              <div class="columns medium-6">
+                                  {{ form_label(form.fonction, 'Votre fonction')}}
+                                  {{ form_errors(form.fonction)}}
+                                  {{ form_widget(form.fonction)}}
+                              </div>
+                          </div>
+                          <div class="row">
+                            <div class="columns medium-5">
+                                {{ form_label(form.bancaire)}}
+                                {{ form_errors(form.bancaire)}}
+                                {{ form_widget(form.bancaire)}}
+                            </div>
+                            <div class="columns medium-4">
+                                {{ form_label(form.banque, 'La banque (si oui)')}}
+                                {{ form_errors(form.banque)}}
+                                {{ form_widget(form.banque)}}
+                            </div>
+                            <div class="columns medium-3">
+                                {{ form_label(form.dateouverture, 'Date ouverture')}}
+                                {{ form_errors(form.dateouverture)}}
+                                {{ form_widget(form.dateouverture)}}
+                            </div>
+                          </div>
+
+                          <div class="row">
+                                                <div class="small-8 columns">
+                                                    {{ form_label(form.zone, 'Commune de formation Bara')}}
+                                                    {{ form_errors(form.zone)}}
+                                                    {{ form_widget(form.zone)}}
+                                                </div>
+                                                <div class="small-4 columns">
+                                                    {{ form_label(form.vague, 'Vague')}}
+                                                    {{ form_errors(form.vague)}}
+                                                    {{ form_widget(form.vague)}}
+                                                </div>
+                                            </div>
+                          <div class="row">
+                              <div class="columns">
+                                  {{ form_label(form.domaines, 'Quels sont vos domaines de compétences?')}}
+                                  {{ form_errors(form.domaines)}}
+                                  {{ form_widget(form.domaines)}}
+                              </div>
+                          </div>
+                          <div class="row">
+                                                <div class="columns">
+                                                    {{ form_label(form.projet, 'Quel est votre projet ?')}}
+                                                    {{ form_errors(form.projet)}}
+                                                    {{ form_widget(form.projet)}}
+                                                </div>
+                                            </div>
+                          <div class="row">
+                                                <div class="columns">
+                                                    {{ form_label(form.entreprise, 'Quel est le nom de votre future entreprise ?')}}
+                                                    {{ form_errors(form.entreprise)}}
+                                                    {{ form_widget(form.entreprise)}}
+                                                </div>
+                                            </div>
+                          <div class="row">
+                                                <div class="columns medium-6">
+                                                    {{ form_label(form.activite, 'Êtes-vous déjà en activité ?')}}
+                                                    {{ form_errors(form.activite)}}
+                                                    {{ form_widget(form.activite)}}
+                                                </div>
+                                                <div class="columns medium-6">
+                                                    {{ form_label(form.dateactivite, 'Quand?')}}
+                                                    {{ form_errors(form.dateactivite)}}
+                                                    {{ form_widget(form.dateactivite)}}
+                                                </div>
+                          </div>
+                          <div class="row">
+                              <div class="columns text-right">
+                                  <input type="submit" value="Enregistrer" class="button warning">
+                              </div>
+                          </div>
+								        </div>
+								    </div>
+
+								</div>
+
+              {{ form_end(form) }}
+
+            </div>
+                  <!-- \Liste des rayonnages -->
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+{% endblock %}
+
+{% block javascripts %}
+  <script type="text/javascript" src="{{ asset('vendor/foundation/plateforme/js/jquery.min.js')}} "></script>
+    <script type="text/javascript" src="{{ asset('vendor/foundation/plateforme/js/foundation.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/semantic/js/semantic.min.js')}}"></script>
+    //
+    <script>
+      $(function(){ $(document).foundation(); });
+      $(document).ready(function(){
+        // disable default behavior for links - prevents iframe logging to
+        // browsing history, requiring multiple back-button clicks to go back one page
+        $('.iframe-body a[href=#]').click(function(e) {
+          e.preventDefault();
+        });
+      });
+    </script>
+
+    <script>
+	    $(document).ready(function(){$(document).foundation();
+		$(".off-canvas-submenu").hide();
+		$(".off-canvas-submenu-call").click(function() {
+			var icon = $(this).parent().next(".off-canvas-submenu").is(':visible') ? '+' : '-';
+			$(this).parent().next(".off-canvas-submenu").slideToggle('fast');
+			$(this).find("span").text(icon);
+		});
+		})
+	</script>
+	<script>
+	  $('.menu .item')
+		  .tab()
+		;
+	</script>
+
+    <script type='text/javascript'>//<![CDATA[
+        $(window).load(function(){
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#blah').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#beneficiaire_photo_file").change(function(){
+                readURL(this);
+            });
+        });//]]>
+
+    </script>
+{% endblock %}

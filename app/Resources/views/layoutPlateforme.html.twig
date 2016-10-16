@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Reseau communitaire de jeunes professionnls{% endblock %}</title>
+        {% block stylesheets %}
+          <link rel="stylesheet" type="text/css" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css')}} ">
+          <link rel="stylesheet" type="text/css" href="{{ asset('vendor/foundation/plateforme/css/app.css')}}">
+          <link rel="stylesheet" type="text/css" href="{{ asset('vendor/foundation/plateforme/css/normalize.css')}} ">
+          <link rel="stylesheet" type="text/css" href="{{ asset('vendor/foundation/plateforme/css/foundation.css')}} ">
+          <link rel="stylesheet" type="text/css" href="{{ asset('css/slideshow2.css')}}">
+          <link rel="stylesheet" type="text/css" href="{{ asset('vendor/font-awesome-4.5.0/css/font-awesome.min.css')}}" media="all">
+          <link rel="stylesheet" type="text/css" href="{{ asset('vendor/bootstrap/css/dataTables.bootstrap.min.css')}} " media="all">
+
+          <link rel="stylesheet" type="text/css" href="{{ asset('css/plateforme.css')}} ">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.png') }}" />
+        {% block scripts1 %}
+        {% endblock %}
+    </head>
+    <body>
+        <ul class="cb-slideshow">
+          <li><span>Image 01</span></li>
+          <li><span>Image 02</span></li>
+          <li><span>Image 03</span></li>
+          <li><span>Image 04</span></li>
+          <li><span>Image 05</span></li>
+          <li><span>Image 06</span></li>
+        </ul>
+        <div class="off-canvas-wrap" data-offcanvas="">
+          <div class="inner-wrap">
+            <nav class="tab-bar">
+              <section class="left-small">
+                <a class="left-off-canvas-toggle menu-icons" href="#"><span></span></a>
+              </section>
+              <div class="small-11 small-offset-1 columns">
+                <div class="row nzassa-top-bar">
+                  <div class="small-12 medium-4 columns">
+                    <img src="{{ asset('images/app/logonzassa.png')}}">
+                  </div>
+                  <div class="hide-for-small-only medium-7 medium-offset-1 columns">
+                    <form>
+                      <!--<div class="ui fluid icon input nzassa-top-bar">
+                        <input placeholder="Rechercher..." type="text">
+                        <i class="inverted circular search link icon"></i>
+                      </div>-->
+                      <div class="input-group">
+                        <input type="text" name="nzassaRecherche" placeholder="Recherche" class="inverted circular search link icon">
+                        <!--<i class=""></i>
+                        <div class="input-group-button">
+                          <input type="submit" name="" value="Ok" class="button">
+                        </div>-->
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </nav>
+
+            <aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        <li><label><img src="{{ asset('images/favicon.png')}} " alt="" width="25">Reseau Nzassa</label></li>
+        <li><a href="#" class="off-canvas-submenu-call"><i class="fa fa-user" aria-hidden="true"></i> &nbsp; Profil <span class="right"> + </span></a></li>
+                <ul class="off-canvas-submenu" style="display: none;">
+                <li><a href="#">Identité</a></li>
+                <li><a href="#">Historique</a></li>
+                <li><a href="{{ path('fos_user_security_logout')}}">Deconnexion</a></li>
+              </ul>
+        <li><a href="#" class="off-canvas-submenu-call"><i class="fa fa-users" aria-hidden="true"></i> &nbsp; Bénéficiaires <span class="right"> + </span></a></li>
+                <ul class="off-canvas-submenu" style="display: none;">
+                <li><a href="{{ path('admin_beneficiaires_new') }}">Enregistrement</a></li>
+                <li><a href="{{ path('admin_beneficiaires_index') }}">Liste</a></li>
+              </ul>
+        <li><a href="#" class="off-canvas-submenu-call"><i class="fa fa-user-secret" aria-hidden="true"></i> &nbsp; Formateurs <span class="right"> + </span></a></li>
+                <ul class="off-canvas-submenu" style="display: none;">
+                <li><a href="#">Enregistrement</a></li>
+                <li><a href="#">Liste</a></li>
+              </ul>
+        <li><a href="#" class="off-canvas-submenu-call"><i class="fa fa-users" aria-hidden="true"></i> &nbsp; Utilisateurs <span class="right"> + </span></a></li>
+                <ul class="off-canvas-submenu" style="display: none;">
+                <li><a href="{{ path('admin_users_index')}}">Liste</a></li>
+                <li><a href="{{ path('admin_groups_index') }}">Groupe</a></li>
+              </ul>
+        <li><a href="#" class="off-canvas-submenu-call"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp; Complements <span class="right"> + </span></a></li>
+                <ul class="off-canvas-submenu" style="display: none;">
+                <li><a href="{{ path('admin_domaines_index')}}">Domaines</a></li>
+                <li><a href="{{ path('admin_zones_index') }}">Zones</a></li>
+              </ul>
+        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i> &nbsp; Paramètres</a></li>
+        <li><a href="{{ path('fos_user_security_logout')}}"><i class="fa fa-power-off" aria-hidden="true"></i> &nbsp; Deconnexion</a></li>
+
+      </ul>
+    </aside>
+
+          {% block content %}{% endblock %}
+
+
+          <a class="exit-off-canvas"></a>
+        </div>
+      </div>
+        {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('vendor/foundation/plateforme/js/jquery.min.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('vendor/foundation/plateforme/js/foundation.js')}}"></script>
+        {% endblock %}
+
+    </body>
+</html>

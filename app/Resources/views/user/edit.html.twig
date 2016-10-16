@@ -1,0 +1,163 @@
+{% extends 'layoutPlateforme.html.twig' %}
+
+{% block title %}Gestion des utilisateurs{% endblock %}
+
+{% block scripts1 %}
+  <script type="text/javascript" src="{{ asset('js/jquery-1.11.3.min.js')}} "></script>
+  <script>
+       $(document).ready(function() {
+           $('#nzassaged').DataTable();
+       } );
+
+   </script>
+{% endblock %}
+
+{% block content %}
+    <section class="main-section">
+        <div class="container2">
+          <div class="nzassa-page nzassa-zone">
+            <div class="small-12">
+
+              <!-- Exploitation -->
+              <div class="row">
+              <!-- Liste des rayonnages -->
+                <div class="small-12 medium-8 large-7 columns nzassa-page--liste">
+                  <h1>Liste des utilisateurs</h1>
+                  <div>
+                    <table id="nzassaged" class="table table-striped table-bordered table-nzassa" cellspacing="0" width="100%">
+                      <thead class="text-center">
+                        <tr align="center">
+                          <th>ID</th>
+                          <th>LOGIN</th>
+                          <th>EMAILS</th>
+                          <th>VERROU</th>
+                          <th>GROUPES</th>
+                          <th>ACTIONS</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for user in users %}
+                          <tr>
+                            <td class="text-right">{{ user.id }}</td>
+                            <td class="text-left">
+                                {{ user.username }}
+                            </td>
+                            <td class="text-left">
+                                {{ user.email }}
+                            </td>
+                            <td class="text-center">
+                              {% if user.locked %}
+                                <span style="color: red"><i class="fa fa-lock fa-lg"></i></span>
+                              {% else %}
+                                <i class="fa fa-unlock fa-lg"></i>
+                              {% endif %}
+                            </td>
+                            <td>{% if user.groups %}{{ user.groups|join(', ') }}{% endif %}</td>
+                            <td class="text-center nzassa-lien-tableau">
+                              <a href="{{ path('admin_users_show', { 'id': user.id }) }}"><span class="glyphicon glyphicon-user"></span></a> |
+                              <a href="{{ path('admin_users_show', { 'id': user.id }) }}"><span class="glyphicon glyphicon-zoom-in"></span></a>  |
+                              <a href="{{ path('admin_users_edit', { 'id': user.id }) }}"><span class="glyphicon glyphicon-edit"></span></a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- \Liste des rayonnages -->
+                <!-- Enregistrement -->
+                <div class="small-12 medium-4 large-4 large-offset-1 columns nzassa-page--enregistrement">
+                  <h1>Enregistrement</h1>
+                  {{ form_start(edit_form) }}
+                  <div class="row">
+                    <div class="small-12 columns">
+                      <label>{{ form_label(edit_form.username, 'Nom utilisateur') }}
+                        {{ form_errors(edit_form.username) }}
+                        {{ form_widget(edit_form.username) }}
+                      </label>
+                    </div>
+                    <div class="small-12 columns">
+                        <label for="">{{ form_label(edit_form.email, 'Adresse email')}}
+                            {{ form_errors(edit_form.email) }}
+                            {{ form_widget(edit_form.email) }}
+                        </label>
+                    </div>
+                    <div class="small-12 columns">
+                        <label for="">{{ form_label(edit_form.locked, 'Verouillé ce compte')}}
+                            {{ form_errors(edit_form.locked) }}
+                            {{ form_widget(edit_form.locked) }}
+                        </label>
+                    </div>
+                    <div class="small-12 columns">
+                        <label for="">{{ form_label(edit_form.groups, 'Groupe ')}}
+                            {{ form_errors(edit_form.groups) }}
+                            {{ form_widget(edit_form.groups) }}
+                        </label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="small-12 columns text-right">
+                      <input type="submit" value="Modifier" class="button warning">
+                    </div>
+                  </div>
+                  {{ form_end(edit_form) }}
+                </div>
+                <!-- \Enregistrement -->
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </section>
+{% endblock %}
+
+{% block javascripts %}
+  <script type="text/javascript" src="{{ asset('vendor/foundation/plateforme/js/jquery.min.js')}} "></script>
+    <script type="text/javascript" src="{{ asset('vendor/foundation/plateforme/js/foundation.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/bootstrap/js/dataTables.bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js')}}"></script>
+    <script>
+      $(function(){ $(document).foundation(); });
+      $(document).ready(function(){
+        // disable default behavior for links - prevents iframe logging to
+        // browsing history, requiring multiple back-button clicks to go back one page
+        $('.iframe-body a[href=#]').click(function(e) {
+          e.preventDefault();
+        });
+      });
+    </script>
+
+    <script>
+	    $(document).ready(function(){$(document).foundation();
+		$(".off-canvas-submenu").hide();
+		$(".off-canvas-submenu-call").click(function() {
+			var icon = $(this).parent().next(".off-canvas-submenu").is(':visible') ? '+' : '-';
+			$(this).parent().next(".off-canvas-submenu").slideToggle('fast');
+			$(this).find("span").text(icon);
+		});
+		})
+	</script>
+{% endblock %}
+
+{% block body %}
+    <h1>User edit</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit" />
+    {{ form_end(edit_form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_users_index') }}">Back to the list</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

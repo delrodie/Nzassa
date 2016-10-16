@@ -1,0 +1,77 @@
+/* Gestion des applications */
+body, html { margin: 0; padding: 0; }
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td { margin: 0; padding: 0; }
+
+a:hover { text-decoration: none; }
+
+ul { list-style: none; }
+
+.container { margin: 0; padding: 0; position: relative; background-color: rgba(255, 103, 1, 0.75); background-repeat: repeat; padding: 75px 25px; color: white; }
+
+.container2 { margin: 0; padding: 0; position: relative; background-color: rgba(255, 103, 1, 0.75); background-repeat: repeat; color: white; padding-bottom: 75px; }
+
+.nzassa-top-bar input { background-color: transparent; border: solid 1px rgba(255, 211, 175, 0.5); border: solid 1px rgba(255, 211, 175, 0.3); }
+.nzassa-top-bar input:focus { background-color: rgba(244, 137, 29, 0.5); color: white; }
+.nzassa-top-bar img { padding-top: 7px; }
+
+/* css pour les pages secondaires de la plateforme */
+/*
+* Author: Delrodie AMOIKON
+*/
+.nzassa-page input { background-color: transparent; }
+.nzassa-page input::placeholder { color: #F9F1E8; font-style: italic; }
+.nzassa-page input:focus { background-color: rgba(244, 137, 29, 0.5); color: white; }
+.nzassa-page--enregistrement h1 { font-size: 1.25em; border-bottom: solid 2px #FFCC99; color: #FFCC99; margin-bottom: 25px; text-transform: uppercase; font-weight: bold; }
+.nzassa-page--enregistrement label { font-size: 1.125em; color: #FCEEE0; }
+.nzassa-page--enregistrement input { background-color: transparent; border: solid 1px rgba(255, 211, 175, 0.5); }
+.nzassa-page--enregistrement input:focus { background-color: rgba(244, 137, 29, 0.5); color: white; }
+.nzassa-page--enregistrement textarea { background-color: transparent; border: solid 1px rgba(255, 211, 175, 0.5); margin-bottom: 15px; }
+.nzassa-page--enregistrement textarea:focus { background-color: rgba(244, 137, 29, 0.5); color: white; }
+.nzassa-page--enregistrement select { background-color: transparent; border: solid 1px rgba(255, 211, 175, 0.5); }
+.nzassa-page--enregistrement select:focus { background-color: rgba(244, 137, 29, 0.5); color: white; }
+.nzassa-page--liste h1 { font-size: 1.25em; border-bottom: solid 0px #FFCC99; color: #FFCC99; margin-bottom: 25px; text-transform: uppercase; text-decoration: underline; font-weight: bold; text-align: center; }
+.nzassa-page--liste a { color: #ffeddf; }
+.nzassa-page--liste .nzassa-lien-tableau a { color: #cf7000; }
+.nzassa-page .nzassa-table > th { background-color: rgba(244, 137, 29, 0.5); border-color: rgba(255, 214, 191, 0.1); color: orange; }
+.nzassa-page .nzassa-table > td { background-color: rgba(244, 137, 29, 0.5); border-color: rgba(255, 214, 191, 0.1); }
+.nzassa-page thead { background-color: #af3e00; color: black; text-align: center; }
+.nzassa-page thead th { text-align: center; border-color: rgba(244, 137, 29, 0.3); }
+.nzassa-page tbody > tr:nth-of-type(even) { background-color: rgba(207, 92, 0, 0.5); color: black; }
+.nzassa-page tbody > tr:nth-of-type(even) td { border-color: rgba(244, 137, 29, 0.3); }
+.nzassa-page tbody > tr:nth-of-type(odd) { background-color: rgba(244, 137, 29, 0.5); color: black; }
+.nzassa-page tbody > tr:nth-of-type(odd) td { border-color: rgba(244, 137, 29, 0.3); }
+.nzassa-page table { border-color: transparent; background-color: transparent; font-size: 0.9em; }
+.nzassa-page--show .libelle { font-size: .95em; color: rgba(255, 255, 255, 0.6); font-style: italic; }
+.nzassa-page--show .donnee { font-size: 1.125em; margin-left: 25px; margin-bottom: 10px; }
+.nzassa-page--show .nzassa-idee { font-style: italic; }
+
+/* Interface de zone */
+.nzassa-zone { padding-bottom: 250px; }
+
+/* Interface de zone */
+.nzassa-domaine { padding-bottom: 250px; }
+
+/* Interface de zone */
+.nzassa-groupe { padding-bottom: 250px; }
+
+/* Interface de zone */
+.nzassa-utilisateur { padding-bottom: 250px; }
+
+/* Interface de beneficiaire */
+.nzassa-beneficiaire { padding-bottom: 250px; }
+.nzassa-beneficiaire a.item { font-size: 1em; font-weight: bold; text-transform: uppercase; color: #fff; }
+.nzassa-beneficiaire .item { background-color: #af3e00; }
+.nzassa-beneficiaire .segment, .nzassa-beneficiaire .segments { background-color: rgba(175, 62, 0, 0.5); border: #af3e00 solid 1px; }
+.nzassa-beneficiaire .separation { border-left: #af3e00 solid 1px; }
+
+/* Interface d'accueil */
+.nzassa-accueil { padding-bottom: 300px; }
+.nzassa-accueil .segment, .nzassa-accueil .segments { background-color: rgba(175, 62, 0, 0.5); border: #af3e00 solid 1px; }
+.nzassa-accueil .label { background-color: transparent; }
+.nzassa-accueil .text-bienvenue { padding-top: 20px; padding-bottom: 75px; color: white; text-align: center; }
+.nzassa-accueil .text-bienvenue h2 { color: rgba(255, 255, 255, 0.7); }
+.nzassa-accueil .text-consigne { padding-top: 75px; padding-bottom: 50px; color: rgba(255, 255, 255, 0.3); }
+.nzassa-accueil .text-consigne h4 { color: rgba(255, 255, 255, 0.5); }
+.nzassa-accueil .statistic .icon { color: #ccc; }
+.nzassa-accueil .statistic .value { color: #ccc; }

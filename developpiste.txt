@@ -1,0 +1,376 @@
+/*
+*********************************************
+*** Platefrome de gestion du reseau Nzassa ***
+***   Entreprises: ONG MESAD & EDEN'ART    ***
+***       Auteur: Delrodie AMOIKON         ***
+**********************************************
+*/
+
+====> Vendredi 07 Octobre 2016 13:15
+
+// Initialisation du project
+
+I°/ GESTION DES UTILISATEURS
+    1-) Installation et activation de FOSUserBundle
+        ** - composer require friendsofsymfony/user-bundle "~2.0@dev"
+        ** - new FOS\UserBundle\FOSUserBundle(),
+
+    2-) Creation de l'enité User.php
+        AppBundle/Entity/User.php
+
+    3-) Creation de l'entité Group
+        AppBundle/Entity/Group.php
+
+    4-) Configuration et importation du routing du Bundle
+        app/config/config.yml
+        ** - fos_user:
+                db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+                firewall_name: main
+                user_class: AppBundle\Entity\User
+                group:
+                    group_class: AppBundle\Entity\Group
+
+        app/config/routing.yml
+        https://symfony.com/doc/current/bundles/FOSUserBundle/index.html#step-6-import-fosuserbundle-routing-files
+        ** - fos_user:
+                resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+            fos_user_group:
+                resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+                prefix: /group
+
+    5-) Creation et mise à jour de la base de données
+        ** - php bin/console doctrine:database:create
+        ** - php bin/console doctrine:schema:create
+
+    6-) Configuration du parfeu
+        https://symfony.com/doc/current/bundles/FOSUserBundle/index.html#step-4-configure-your-application-s-security-yml
+
+    7-) Configuration du parfeu pour se souvenir de l'utilisateur
+        app/config/security.yml
+        ** - form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                remember_me: true
+                default_target_path: /
+
+              remember_me:
+                secret:      "%secret%"
+                lifetime: 2592000 # 30 days in seconds
+                path:     /
+                domain:   ~ # Defaults to the current domain from $_SERVER
+                httponly: true
+
+    8-) Personnalisation de la page de connexion
+        creation du repertoire app/Resources/FOSUserBundle/views/
+        pour y copier les fichiers
+            - vendor\friendsofsymfony\user-bundle\Resources\views\layout.html.twig
+            - vendor\friendsofsymfony\user-bundle\Resources\views\Security\login.html.twig
+
+    9-) Administrer les groupes et utilisateurs
+        . Mise a jour de la classe utilisateur par insertion des methodes pour
+            - decomptage des connexions
+            ** - /**
+                 * @ORM\Column(type="integer", length=6, options={"default":0})
+                 */
+                protected $loginCount = 0;
+
+            - enregistrement des informations d'horotage à la connexion
+            ** - /**
+                 * @var \DateTime
+                 *
+                 * @ORM\Column(type="datetime", nullable=true)
+                 */
+
+            regeneration de l'entité user
+            ** - php bin/console doctrine:generate:entites AppBundle:user
+
+            Mise à jour de la base de données
+            ** - php bin/console doctrine:cache:clear-metadata
+            ** - php bin/console doctrine:schema:update --force
+
+        . evenement et ecoute
+            AppBundle\Resources\config\services.yml
+            ** - services:
+                    login_listener:
+                        class: 'AppBundle\Listener\LoginListener'
+                        arguments: ['@fos_user.user_manager']
+                        tags:
+                            - { name: 'kernel.event_listener', event: 'security.interactive_login' }
+                            - { name: 'kernel.listener', event: 'fos_user.security.implicit_login' }
+
+            Creation du fichier AppBundle\Listener\LoginListener.php
+            http://io.gchatelier.fr/blog/gestion-des-utilisateurs-groupes-et-roles-sous-symfony-2/
+
+    10-) CRUD de la classe Group
+            ** - php bin/console doctrine:generate:crud
+
+            .recuperation des informations de mise en correspondance des entité aux tables
+            ** - php bin/console doctrine:mapping:import "AppBundle" xml
+
+            . Modification des fichiers generés
+            ** - AppBundle/Resources/config/doctrine/FosGroup.orm.xml => AppBundle/Resources/config/doctrine/Group.orm.xml
+            ** - AppBundle/Resources/config/doctrine/FosUser.orm.xml => AppBundle/Resources/config/doctrine/User.orm.xml
+
+            . regeneration des entités
+            ** - php bin/console doctrine:generate:enties AppBundle
+
+    11-) CRUD de la classe User
+            ** - php bin/console doctrine:generate:crud AppBundle:User
+
+            . Suppression des fichier doctrine et modification des fichiers Entiy
+            . Modification des fichiers views/Users/index.html.twig et ::base.html.twig
+
+    12-) Modification de groupeController et des classes Group et User
+
+    13-) Personnalisation de la classe user
+
+    14-) Modification de form/UserType
+
+
+====> Samedi 08 Octobre 2016 10:37
+
+    15-) Modification du controller UseController
+
+
+====> Dimanche 09 Octobre 2016 12:13
+
+II°/ TEMPLATES
+
+    1-) Insertions des fichiers ressources dans le repertoire web/
+
+    2-) Configuration du layout du site web
+        app/Resources/views/layoutWebsite.html.twig
+
+    3-) Integration du form de login dans le layout du site
+
+    4-) Personnalisation de la page de modification des paramètres de connexion
+
+    5-) Configuration du layout de la plateforme
+        app/Resources/views/layoutPlateforme.html.twig
+
+III°/ PERSONNALISATION DE GROUP
+     Integration du layoutPlateforme dans la view de group
+     Modification de indexAction() de GroupController pour enregistrement du groupe
+     modificatioon de views/group/index.html.twig
+
+     Modification de editAction() de GroupController pour affichage de la liste et formulaire de modification
+     modification de views/group/edit.html.twig
+
+     Modification de showAction() de GroupController pour la liste et la consultation
+     Modification de views/group/show.html.twig
+
+IV°/ PERSONNALISATION DE USER
+      integration de layoutPlateforme dans la view de user
+      Modification de indexAction() de UserController pour enregistrement du groupe
+      modificatioon de views/user/index.html.twig
+
+      Modification de editAction() de UserController pour affichage de la liste et formulaire de modification
+      modification de views/user/edit.html.twig
+
+      Modification de showAction() de UserController pour la liste et la consultation
+      Modification de views/user/show.html.twig
+
+
+
+====> Lundi 10 Octobre 2016 18:00
+
+V°/ ENTITE ZONE
+    1-) Creation de la classe Zone
+        ** - php bin/console doctrine:generate:entity AppBundle:Zone --format:annotation
+
+        Mise à jour de la base de données
+        ** - php bin/console doctrine:schema:update --force
+
+        Generation CRUD de la classe
+        ** - php bin/console doctrine:generate:crud AppBundle:Zone
+
+    2-) Integration template Zone
+        Modification de indexAction de ZoneController pour integration du formulaire d'enregistrement
+
+        Personnalisation du template views/zone/index.html.twig
+
+        Ajout du champs code pour le code unique de la zone
+
+        Modification de la classe ZoneRepository par creation des fonctions
+
+        Ajout d'un champ status pour l'activation/desactivation de la ligne zone
+
+
+====> Mardi 10 Octobre 2016 00:24
+
+VI°/ ENITITE DOMAINE
+      1-) Creation de la classe Domaine
+          ** - php bin/console doctrine:generate:entity AppBundle:Domaine --format=annotation
+              DOMAINE:
+                Libelle: string{255} => nom du domaine
+                Code:string{2} => code identifiant du domaine
+                desactivation: boolean => statut du domaine
+
+          Mise a jour de la base données
+          ** - php bin/console doctrine:schema:update --force
+
+          Generation du CRUD de la classe
+          ** - php bin/console doctrine:generate:crud AppBundle:Domaine
+
+      2-) Integration du template
+          Modification de indexAction de DomaineController pour integration du formulaire d'enregistrement
+          ** - $domaine = new Domaine();
+                $form = $this->createForm('AppBundle\Form\DomaineType', $domaine);
+                $form->handleRequest($request);
+
+                if ($form->isSubmitted() && $form->isValid()) {
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($domaine);
+                    $em->flush();
+
+                    return $this->redirectToRoute('admin_domaines_show', array('id' => $domaine->getId()));
+                }
+
+          Modification de editAction de DomaineController pour integration de la liste des domaines
+          ** - $em = $this->getDoctrine()->getManager();
+                $domaines = $em->getRepository('AppBundle:Domaine')->findAll();
+
+VII°/ ENTITE BENEFICIAIRE
+      1-) Creation de la classe Beneficiaire
+          Generation de l'entité Beneficiaire
+          // - php bin/console doctrine:generate:entity AppBundle:Beneficiaire --format=annotation
+
+      2-) Gestion des relations
+          un beneficaire a un compte utilisateur
+          ** - /**
+                * @ORM\OneToOne(targetEntity="AppBundle\Entity\User")
+                * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+                */
+                private $user;
+
+          Un beneficiare appartient à une zone
+          ** - /**
+                * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Zone", inversedBy="beneficiaires")
+                * @ORM\JoinColumn(name="zone_id", referencedColumnName="id")
+                */
+                private $zone;
+
+                => dans la classe zone
+                /**
+                * @ORM\OneToMany(targetEntity="AppBundle\Entity\Beneficiaire", mappedBy="zone")
+                */
+                private $beneficiaires;
+
+                public function __construct() {
+                  $this->beneficiaires = new ArrayCollection();
+                }
+
+          Un beneficiciare est quelifié dans plusieurs domaine d'acrivité
+          ** - /**
+               * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Domaine")
+               * @ORM\JoinTable(name="beneficiaires_domaines",
+               *      joinColumns={@ORM\JoinColumn(name="beneficiaire_id", referencedColumnName="id")},
+               *      inverseJoinColumns={@ORM\JoinColumn(name="domaine_id", referencedColumnName="id")}
+               *      )
+               */
+               private $domaines;
+
+               public function __construct() {
+                  $this->domaines = new \Doctrine\Common\Collections\ArrayCollection();
+              }
+
+      3-) Integration du template
+
+
+
+====> Mercredi 11 Octobre 2016 13:32
+
+      4-) Generation du matricule
+          Recuperation du code de la zone du beneficiaire
+            - AppBundle/Controller/BeneficiaireController;
+              ** - $zone = $em->getRepository('AppBundle:Zone')->requeteZoneCode($beneficiaire->getZone());
+
+            - AppBundle/repository/ZoneRepository
+              ** -    public function requeteZoneCode($id)
+                      {
+                          $em = $this->getEntityManager();
+                          $qb = $em->createQuery('
+                              SELECT z.code as code
+                              FROM AppBundle:Zone z
+                              WHERE z.id = :id
+                          ')->setParameter('id', $id)
+                          ;
+                          try {
+                              $code = $qb->getSingleResult();
+                              foreach ($code as $key => $value) {
+                                  return $value;
+                              }
+
+                          } catch (NoResultException $e) {
+                              return $e;
+                          }
+
+                      }
+
+          Generation du code aleatoire à 8 chiffres
+            - AppBundle/Controller/Beneficiaire;
+              ** - $matricule = $em->getRepository('AppBundle:Beneficiaire')->generationMatricule();
+
+           - AppBundle/Repository/BeneficiaireRepository
+              ** - public function generationMatricule()
+                {
+                    // Recuperation des matricules de la base de données
+                    $em = $this->getEntityManager();
+                    $qb = $em->createQuery('
+                        SELECT b.matricule as matricule
+                        FROM AppBundle:Beneficiaire b
+                    ');
+                    try {
+                        $code = $qb->getResult();
+                    } catch (NoResultException $e) {
+                        return $e;
+                    }
+
+                    // Affectation a code la valeur aleatoire generée
+                    $matricule = mt_rand(10000000, 99999999);
+
+                    // Test de non existence du code generé
+                    $fin = 0;
+                    while ($fin != 1) {
+                      foreach ($code as $key => $value) {
+                          if ($matricule === $value) {
+                            $matricule = mt_rand(10000000, 99999999);
+                            break;
+                          }
+                          else {
+                            $fin=1;
+                          }
+                      }
+                    }
+
+                    return $matricule;
+                }
+
+
+====> Jeudi 13 Octobre 2016 16:11
+
+      5-) Integration du template pour la visualisation du beneficiare
+
+
+====> Vendredi 14 Octobre 2016 08:36
+
+      6-) Personnalisation de la page d'accueils
+
+VIII°/ ENTITE PHOTO
+
+      1) Creation de la class Entité
+         ** - php bin/console doctrine:generate:entity AppBundle:Photo --format=Annotation
+
+         Mise en relation des entités beneficiaire et photo
+         ** - /**
+               * @ORM\OneToOne(targetEntity="AppBundle\Entity\Photo", cascade={"persist"})
+               */
+               private $photo;
+
+               public function __construct() {
+                  $this->domaines = new \Doctrine\Common\Collections\ArrayCollection();
+              }
+
+        Generation crud de l'entité Photo
+        ** - php bin/console doctrine:generate:crud AppBundle:Photo
