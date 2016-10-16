@@ -1,4 +1,4 @@
-set :application, "set your application name here"
+set :application, "Reseau Nzassa"
 set :domain,      "#{application}.com"
 set :deploy_to,   "/var/www/#{domain}"
 set :app_path,    "app"
